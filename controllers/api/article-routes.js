@@ -11,7 +11,6 @@ router.get("/", (req, res) => {
             "id", "title", "content", "created_at", "updated_at",
             [
                 sequelize.literal(
-                    // TODO: test if this actually works
                     "(SELECT SUM(value) FROM vote WHERE article.id = vote.article_id)"
                 ),
                 "vote_count"
@@ -59,7 +58,6 @@ router.get("/:id", (req, res) => {
             "id", "title", "content", "created_at", "updated_at",
             [
                 sequelize.literal(
-                    // TODO: test if this actually works
                     "(SELECT SUM(value) FROM vote WHERE article.id = vote.article_id)"
                 ),
                 "vote_count"
