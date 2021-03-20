@@ -7,16 +7,14 @@
   <div class="card-content">
     <div class="media">
       <div class="media-content">
-        <p class="title is-4">{{! post-info partial/title}}</p>
-        <p class="subtitle is-6">{{! post-info partial/category}}</p>
+        <p class="title is-4">{{post.title}}</p>
       </div>
     </div>
 
-    <div class="content">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Phasellus nec iaculis mauris.
+    <div class="content" id='summary'>
+      
       <br>
-      <time>{{! post-info-partial/last-edit}}</time>
+      <time>{{created_at}}</time>
     </div>
   </div>
 </div>
