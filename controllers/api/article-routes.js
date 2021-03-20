@@ -1,7 +1,7 @@
 /* routes for articles in backend api */
 const router = require("express").Router();
 const sequelize = require("../../config/connection");
-const { User, Article, Comment, Image, Source, Edit } = require("../../models");
+const { Article, Comment, Vote } = require("../../models");
 
 // get all articles
 router.get("/", (req, res) => {
@@ -20,27 +20,8 @@ router.get("/", (req, res) => {
         include: [
             // all comments on each article
             {
-                model: Comment,
-                include: {
-                    model: User,
-                    attributes: ["username"]
-                }
-            },
-            // TODO: all images used by each article
-            // {
-            //     model: Image,
-            //     attributes: //TODO
-            // },
-            // TODO: all sources used by each article
-            // {
-            //     model: Source,
-            //     attributes: //TODO
-            // },
-            // TODO: include edit history of each article?
-            // {
-            //     model: Edit,
-            //     attributes: //TODO
-            // }
+                model: Comment
+            }
         ]
     })
     .then(articleData => res.json(articleData))
@@ -68,27 +49,8 @@ router.get("/:id", (req, res) => {
         include: [
             // all comments on this article
             {
-                model: Comment,
-                include: {
-                    model: User,
-                    attributes: ["username"]
-                }
-            },
-            // TODO: all images used by this article
-            // {
-            //     model: Image,
-            //     attributes: //TODO
-            // },
-            // TODO: all sources used by this article
-            // {
-            //     model: Source,
-            //     attributes: //TODO
-            // },
-            // TODO: include edit history of this article?
-            // {
-            //     model: Edit,
-            //     attributes: //TODO
-            // }
+                model: Comment
+            }
         ]
     })
     .then(articleData => {
@@ -124,7 +86,7 @@ router.post("/", (req, res) => {
 // (put) vote on an article by id
 router.put("/vote", (req, res) => {
     // expects { value, user_id, article_id } in req.body
-    Article.vote(req.body, {Vote, Comment, User }) // Article.vote(req.body, {Vote, Comment, Image, Source, Edit })
+    Article.vote(req.body, {Vote, Comment }) // Article.vote(req.body, {Vote, Comment, Image, Source, Edit })
     .then(articleData => res.json(articleData))
     .catch(err => {
         console.log(err);

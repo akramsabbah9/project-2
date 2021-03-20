@@ -13,7 +13,7 @@ class Article extends Model {
         // TODO: do we really need to do a findOne search in Article table if we won't use its output?
         .then(() => {
             return Article.findOne({
-                where: { id: body.post_id },
+                where: { id: body.article_id },
                 attributes: [
                     "id", "title", "content", "created_at", "updated_at",
                     [
@@ -27,27 +27,8 @@ class Article extends Model {
                 include: [
                     // all comments on this article
                     {
-                        model: Comment,
-                        include: {
-                            model: User,
-                            attributes: ["username"]
-                        }
-                    },
-                    // TODO: all images used by this article
-                    // {
-                    //     model: Image,
-                    //     attributes: //TODO
-                    // },
-                    // TODO: all sources used by this article
-                    // {
-                    //     model: Source,
-                    //     attributes: //TODO
-                    // },
-                    // TODO: include edit history of this article?
-                    // {
-                    //     model: Edit,
-                    //     attributes: //TODO
-                    // }
+                        model: models.Comment
+                    }
                 ]
             });
         });
