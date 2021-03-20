@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WikiPleiades</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.2/css/bulma.min.css'>
+</head>
+<body>
+    <div class={{! wrapper class }}>
+        <header class='hero'>
+            <nav class='breadcrumb is-right has-bullet-separator'>
+                <ul>
+                    <li><a href=''>Home</a></li>
+                    <li><a href=''>Dashboard</a></li>
+                    {{#if loggedIn}}
+                    <li><a href=''>Logout</a></li>
+                    {{#else}}
+                    <li><a href=''>Login</a></li>
+                    {{/if}}
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+
+        </main>
+    </div>
+</body>
