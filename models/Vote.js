@@ -13,8 +13,11 @@ Vote.init(
             autoIncrement: true
         },
         value: {
-            type: DataTypes.BOOLEAN, // true for upvote, false for downvote
-            allowNull: false
+            type: DataTypes.INTEGER, // either 1 or -1
+            allowNull: false,
+            validate: {
+                isIn: [[-1, 1]]
+            }
         },
         user_id: {
             type: DataTypes.INTEGER,
