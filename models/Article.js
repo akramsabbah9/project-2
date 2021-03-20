@@ -13,12 +13,11 @@ class Article extends Model {
         // TODO: do we really need to do a findOne search in Article table if we won't use its output?
         .then(() => {
             return Article.findOne({
-                where: { id: body.post_id },
+                where: { id: body.article_id },
                 attributes: [
                     "id", "title", "content", "created_at", "updated_at",
                     [
                         sequelize.literal(
-                            // TODO: test if this actually works
                             "(SELECT SUM(value) FROM vote WHERE article.id = vote.article_id)"
                         ),
                         "vote_count"
@@ -27,7 +26,7 @@ class Article extends Model {
                 include: [
                     // all comments on this article
                     {
-                        model: Comment,
+                        model: models.Comment,
                         include: {
                             model: User,
                             attributes: ["username"]
