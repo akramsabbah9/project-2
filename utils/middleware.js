@@ -1,5 +1,4 @@
 /* middleware.js: middleware to help with routing. */
-const e = require("express");
 const { Vote } = require("../models");
 
 // checks if a Vote (value, user_id, article_id) has already been made.
@@ -39,13 +38,13 @@ const checkVote = (req, res, next) => {
                     return res.status(400).json({ message: "Could not change vote" });
                 }
                 res.json(updateData);
-            })
+            });
         }
     })
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
-    })
+    });
 };
 
 // TODO: for use after we start working with sessions.
