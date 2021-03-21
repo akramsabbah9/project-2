@@ -17,16 +17,34 @@ const checkVote = (req, res, next) => {
         if (!voteData) {
             next();
         }
-        // if the vote exists, console.log it.
-        else {
-            console.log(voteData);
+        // if there is a dupe with the same value, respond with 400.
+        else if (voteData.dataValues.value === req.body.value) {
             res.status(400).json({ message: "You already voted on this article." });
+        }
+        // if there is a dupe with a different value, update it.
+        else {
+            Vote.update(
+            {
+                value: req.body.value
+            },
+            {
+                where: {
+                    user_id: voteData.dataValues.user_id,
+                    article_id: voteData.dataValues.article_id
+                }
+            })
+            .then(updateData => {
+                if (!updateData[0]) {
+                    return res.status(400).json({ message: "Could not change vote" });
+                }
+                res.json(updateData);
+            });
         }
     })
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
-    })
+    });
 };
 
 // TODO: for use after we start working with sessions.
