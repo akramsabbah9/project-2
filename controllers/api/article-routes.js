@@ -2,6 +2,7 @@
 const router = require("express").Router();
 const sequelize = require("../../config/connection");
 const { Article, Comment, Vote } = require("../../models");
+const { checkVote } = require("../../utils/middleware");
 
 // get all articles
 router.get("/", (req, res) => {
@@ -84,9 +85,9 @@ router.post("/", (req, res) => {
 
 
 // (put) vote on an article by id
-router.put("/vote", (req, res) => {
+router.put("/vote", checkVote, (req, res) => {
     // expects { value, user_id, article_id } in req.body
-    Article.vote(req.body, {Vote, Comment }) // Article.vote(req.body, {Vote, Comment, Image, Source, Edit })
+    Article.vote(req.body, {Vote, Comment })
     .then(articleData => res.json(articleData))
     .catch(err => {
         console.log(err);
