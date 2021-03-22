@@ -65,6 +65,9 @@ User.belongsToMany(Article, {
 Comment.belongsTo(Article, {
     foreignKey: "article_id"
 });
+Comment.belongsTo(User, {
+    foreignKey: "article-id"
+})
 
 // Vote 
 Vote.belongsTo(Article, {
