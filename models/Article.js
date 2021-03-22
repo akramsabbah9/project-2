@@ -28,7 +28,7 @@ class Article extends Model {
                     {
                         model: models.Comment,
                         include: {
-                            model: User,
+                            model: models.User,
                             attributes: ["username"]
                         }
                     },
