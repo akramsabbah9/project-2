@@ -40,6 +40,26 @@ User.hasMany(Revision, {
     foreignKey: 'user_id',
 
 });
+User.belongsToMany(Article, {
+    through: Vote,
+    as: 'voted_articles',
+
+    foreignKey: 'user_id',
+    onDelete: 'SET NULL'
+});
+User.belongsToMany(Article, {
+    through: Image,
+    as: 'image_posts',
+
+    foreignKey: 'user_id',
+    onDelete: 'SET NULL'
+});
+User.belongsToMany(Article, {
+    through: Comment,
+    as: 'comment_posts',
+    foreignKey: 'user_id',
+    onDelete: 'SET NULL'
+})
 
 // Comment 
 Comment.belongsTo(Article, {

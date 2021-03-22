@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Article, Revision, } = require('../../models');
+const { User, Article, Comment, Revision, Image, Vote } = require('../../models');
 
 
 // get all users
@@ -25,7 +25,7 @@ router.get('/:id', (req, res) => {
                     model: Article,
                     attributes: ['id', 'title', 'created_at']
                 },
-                // We can add more values to this if you guys want, but for now I am just keeping it simple.
+                // We can add or remove values for this as needed
                 {
                     model: Revision,
                     attributes: ['id', 'created_at'],
@@ -34,12 +34,24 @@ router.get('/:id', (req, res) => {
                         attributes: ['title']
                     }
                 },
-                /*{
-                                   model: Article,
-                                   attributes: ['title'],
-                                   through: Vote,
-                                   as: 'voted_posts'
-                               }*/
+                {
+                    model: Article,
+                    attributes: ['title'],
+                    through: Vote,
+                    as: 'voted_articles'
+                },
+                {
+                    model: Article,
+                    attributes: ['title'],
+                    through: Image,
+                    as: 'image_posts'
+                },
+                {
+                    model: Article,
+                    attributes: ['title'],
+                    through: Comment,
+                    as: 'comment_posts'
+                }
 
             ]
         })
@@ -118,7 +130,7 @@ router.post('/logout', (req, res) => {
 */
 
 // update user
-router.put('/:id', (req, res) => {
+router.put('/:id' /*, withAuth*/ , (req, res) => {
 
     User.update(req.body, {
             individualHooks: true,
@@ -140,7 +152,7 @@ router.put('/:id', (req, res) => {
 });
 
 // delete user by ID
-router.delete('/:id', (req, res) => {
+router.delete('/:id', /* withAuth,*/ (req, res) => {
     User.destroy({
             where: {
                 id: req.params.id
