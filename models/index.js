@@ -20,58 +20,62 @@ Article.hasMany(Revision, {
 Article.hasMany(Vote, {
     foreignKey: "article_id"
 });
-
-// User 
-User.hasMany(Article, {
-    foreignKey: "article_id"
+Article.belongsToMany(User, {
+    through: Vote,
+    as: 'voted_articles',
+    foreignKey: 'article_id'
 });
+Article.belongsToMany(User, {
+    through: Comment,
+    as: 'comment_posts',
+    foreignKey: 'article_id'
+});
+Article.belongsToMany(User, {
+    through: Revision,
+    as: 'revisions_added',
+    foreignKey: 'article_id'
+});
+
+// User
 User.hasMany(Comment, {
     foreignKey: 'user_id',
 });
-User.hasMany(Image, {
-    foreignKey: 'user_id',
-
-});
 User.hasMany(Vote, {
     foreignKey: 'user_id',
-
 });
 User.hasMany(Revision, {
     foreignKey: 'user_id',
-
 });
 User.belongsToMany(Article, {
     through: Vote,
     as: 'voted_articles',
-
-    foreignKey: 'user_id',
-    onDelete: 'SET NULL'
-});
-User.belongsToMany(Article, {
-    through: Image,
-    as: 'image_posts',
-
-    foreignKey: 'user_id',
-    onDelete: 'SET NULL'
+    foreignKey: 'user_id'
 });
 User.belongsToMany(Article, {
     through: Comment,
     as: 'comment_posts',
-    foreignKey: 'user_id',
-    onDelete: 'SET NULL'
-})
+    foreignKey: 'user_id'
+});
+User.belongsToMany(Article, {
+    through: Revision,
+    as: 'revisions_added',
+    foreignKey: 'user_id'
+});
 
 // Comment 
 Comment.belongsTo(Article, {
     foreignKey: "article_id"
 });
 Comment.belongsTo(User, {
-    foreignKey: "article-id"
-})
+    foreignKey: "user_id"
+});
 
 // Vote 
 Vote.belongsTo(Article, {
     foreignKey: "article_id"
+});
+Vote.belongsTo(User, {
+    foreignKey: "user_id"
 });
 
 // Image 
@@ -83,8 +87,8 @@ Image.belongsTo(Article, {
 Revision.belongsTo(Article, {
     foreignKey: "article_id"
 });
+Revision.belongsTo(User, {
+    foreignKey: "user_id"
+});
 
-/*
-module.exports = { Article, Comment, Vote };
-//*/
-module.exports = { User, Article, Comment, /* Source,*/ Image, Revision, Vote };
+module.exports = { User, Article, Comment, Image, Revision, Vote };
