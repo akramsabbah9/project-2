@@ -1,17 +1,16 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class RevisionTable extends Model {}
+class Image extends Model {}
 
-
-RevisionTable.init({
+Image.init({
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
         autoIncrement: true
     },
-    changes: {
+    comment_text: {
         type: DataTypes.TEXT,
         allowNull: false,
         validate: {
@@ -25,19 +24,18 @@ RevisionTable.init({
             key: 'id'
         }
     },
-    article_id: {
+    post_id: {
         type: DataTypes.INTEGER,
         references: {
-            model: 'article',
+            model: 'post',
             key: 'id'
         }
-    },
-
+    }
 }, {
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: 'revision_table'
+    modelName: 'comment'
 });
 
-module.exports = RevisionTable;
+module.exports = Image;
