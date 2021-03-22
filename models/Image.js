@@ -10,32 +10,35 @@ Image.init({
         primaryKey: true,
         autoIncrement: true
     },
-    comment_text: {
+    image_url: {
         type: DataTypes.TEXT,
         allowNull: false,
         validate: {
-            len: [1]
+            isUrl: true,
         }
     },
-    user_id: {
+    article_id: {
         type: DataTypes.INTEGER,
         references: {
-            model: 'user',
+            model: 'article',
             key: 'id'
         }
     },
-    post_id: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: 'post',
-            key: 'id'
-        }
-    }
+
+    // Could also site the user who posted the image here
+    /*
+        user_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'user',
+                key: 'id'
+            }
+        }*/
 }, {
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: 'comment'
+    modelName: 'image'
 });
 
 module.exports = Image;
