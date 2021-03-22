@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Article, Comment, Revision, Image, Vote } = require('../../models');
+const { User, Article, Revision, } = require('../../models');
 
 
 // get all users

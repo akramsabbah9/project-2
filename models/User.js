@@ -23,7 +23,7 @@ User.init({
         unique: true,
         allowNull: false,
         validate: {
-            len: [6, 12]
+            len: [4, 12]
 
         }
     },
