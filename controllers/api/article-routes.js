@@ -1,7 +1,7 @@
 /* routes for articles in backend api */
 const router = require("express").Router();
 const sequelize = require("../../config/connection");
-const { User, Article, Comment, Image, Source, Edit } = require("../../models");
+const { User, Article, Comment, Image, /*Source,*/ Revision } = require("../../models");
 const { checkVote } = require("../../utils/middleware");
 
 // get all articles
