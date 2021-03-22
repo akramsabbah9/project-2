@@ -3,9 +3,9 @@
 // const Comment = require("./Comment");
 // const Source = require("./Source");
 // const Image = require("./Image");
-// const Edit = require("./Edit");
+// const Edit = require("./Revision");
 // const Vote = require("./Vote");
 
 // TODO: define model relationships here
 
-// module.exports = { User, Article, Comment, Source, Image, Edit, Vote };
+// module.exports = { User, Article, Comment, Source, Image, Revision, Vote };

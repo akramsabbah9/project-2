@@ -2,10 +2,10 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class RevisionTable extends Model {}
+class Revision extends Model {}
 
 
-RevisionTable.init({
+Revision.init({
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -38,7 +38,7 @@ RevisionTable.init({
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: 'revision_table'
+    modelName: 'revision'
 });
 
-module.exports = RevisionTable;
+module.exports = Revision;
