@@ -36,19 +36,19 @@ router.get('/:id', (req, res) => {
                 },
                 {
                     model: Article,
-                    attributes: ['title'],
+                    attributes: ['id', 'title'],
                     through: Vote,
                     as: 'voted_articles'
                 },
                 {
                     model: Article,
-                    attributes: ['title'],
+                    attributes: ['id', 'title'],
                     through: Image,
                     as: 'image_posts'
                 },
                 {
                     model: Article,
-                    attributes: ['title'],
+                    attributes: ['id', 'title'],
                     through: Comment,
                     as: 'comment_posts'
                 }
@@ -70,6 +70,7 @@ router.get('/:id', (req, res) => {
 
 // create a new user
 router.post('/', (req, res) => {
+    // input: { "username": "someUser", "email": "rimsy@catmail.com","password": "awesomePassword"}
     User.create({
             username: req.body.username,
             email: req.body.email,
@@ -89,6 +90,7 @@ router.post('/', (req, res) => {
 
 // user login route
 router.post('/login', (req, res) => {
+    // input: { "email": "rimsy@catmail.com","password": "awesomePassword"}
     User.findOne({
         where: {
             email: req.body.email
@@ -131,6 +133,7 @@ router.post('/logout', (req, res) => {
 
 // update user
 router.put('/:id' /*, withAuth*/ , (req, res) => {
+    // input: { "username": "someUser", "email": "rimsy@catmail.com","password": "awesomePassword"}
 
     User.update(req.body, {
             individualHooks: true,
