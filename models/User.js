@@ -1,4 +1,4 @@
-// Model for Users' data
+// Model for Users' data table
 const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');

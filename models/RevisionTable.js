@@ -1,3 +1,4 @@
+// Model for Revision Tables - holds the history of an article's edited content
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
