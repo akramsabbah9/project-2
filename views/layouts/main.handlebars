@@ -10,16 +10,28 @@
 <body>
     <div class='container'>
         <header class='hero'>
-            <nav class='breadcrumb is-right has-bullet-separator'>
-                <ul>
-                    <li><a href=''>Home</a></li>
-                    <li><a href=''>Dashboard</a></li>
-                    {{#if loggedIn}}
-                    <li><a href=''>Logout</a></li>
-                    {{#else}}
-                    <li><a href=''>Login</a></li>
-                    {{/if}}
-                </ul>
+            <nav class="level">
+            <p class="level-item has-text-centered">
+                <a class="link is-info">Home</a>
+            </p>
+            <p class="level-item has-text-centered">
+                <a class="link is-info">Search</a>
+            </p>
+            <p class="level-item has-text-centered">
+                <img src="../../images/WikiPleiades.png" alt="" style="height: 30px;">
+            </p>
+            {{#if loggedIn}}
+            <p class="level-item has-text-centered">
+                <a class="link is-info">Login</a>
+            </p>
+            {{#else}}
+            <p class="level-item has-text-centered">
+                <a class="link is-info">Logout</a>
+            </p>
+            {{/if}}
+            <p class='level-item has-text-centered'>
+                <a class='link is-info'>Random</a>
+            </p>
             </nav>
         </header>
 
