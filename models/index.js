@@ -3,7 +3,7 @@
 // const Comment = require("./Comment");
 // const Source = require("./Source");
 // const Image = require("./Image");
-// const Edit = require("./Revision");
+// const Revision = require("./Revision");
 // const Vote = require("./Vote");
 
 // TODO: define model relationships here
