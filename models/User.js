@@ -1,7 +1,10 @@
+// Model for Users' data
 const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
+
+// Uses bcrypt to conceal passwords
 class User extends Model {
     passwordCheck(currentPassword) {
         return bcrypt.compareSync(currentPassword, this.password);
@@ -21,8 +24,10 @@ User.init({
         allowNull: false,
         validate: {
             len: [6, 12]
+
         }
     },
+    // We can adjust this as you guys think is best but I thought it would be good to give the values some parameters
     password: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -41,7 +46,7 @@ User.init({
 
 }, {
     hooks: {
-
+        // Using hooks with bcrypt
         async beforeCreate(newData) {
             newData.password = await bcrypt.hash(newData.password, 10);
             return newData;
