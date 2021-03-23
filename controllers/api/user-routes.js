@@ -86,6 +86,10 @@ router.post('/', (req, res) => {
                 res.json(userData);
             });
         })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
 // user login route
@@ -122,6 +126,10 @@ router.post('/login', (req, res) => {
                 user: userData,
                 message: 'Login successful'
             });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
         });
     });
 });
