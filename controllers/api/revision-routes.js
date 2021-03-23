@@ -15,12 +15,12 @@ router.get('/:id', (req, res) => {
                 id: req.params.id
             },
             include: [{
-                    model: Article,
-                    attributes: ['id', 'title', 'content', 'created_at'],
-                },
-                {
                     model: User,
                     attributes: ['id', 'username']
+                },
+                {
+                    model: Article,
+                    attributes: ['id', 'title', 'content', 'created_at'],
                 }
             ]
         })

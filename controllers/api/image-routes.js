@@ -15,13 +15,15 @@ router.get('/:id', (req, res) => {
                 id: req.params.id
             },
             include: [{
+                    model: User,
+                    attributes: ['id', 'username']
+                },
+                {
                     model: Article,
                     attributes: ['id', 'title', 'created_at'],
                 },
-                {
-                    model: User,
-                    attributes: ['id', 'username']
-                }
+
+
             ]
         })
         .then(imageData => res.json(imageData))
@@ -53,7 +55,7 @@ router.delete('/:id', (req, res) => {
         .then(imageData => {
             if (!imageData) {
                 res.status(404).json({
-                    message: 'No Image found with this id!'
+                    message: 'No image found with this id!'
                 });
                 return;
             }

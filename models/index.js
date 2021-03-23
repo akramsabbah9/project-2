@@ -5,8 +5,6 @@ const Image = require("./Image");
 const Revision = require("./Revision");
 const Vote = require("./Vote");
 
-// TODO: define model relationships here
-
 // Article 
 Article.hasMany(Comment, {
     foreignKey: "article_id"
@@ -77,8 +75,8 @@ Image.belongsTo(User, {
 Revision.belongsTo(Article, {
     foreignKey: "article_id"
 });
-Revision.belongsTo(User, {
-    foreignKey: "user_id"
-});
+Revision.hasMany(Image, {
+    foreignKey: "article_id"
+})
 
 module.exports = { User, Article, Comment, Image, Revision, Vote };

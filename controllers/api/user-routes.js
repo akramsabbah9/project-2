@@ -78,15 +78,14 @@ router.post('/', (req, res) => {
             password: req.body.password
         })
         .then(userData => {
-            // For session use
-            /*            req.session.save(() => {
-                            req.session.user_id = userData.id;
-                            req.session.username = userData.username;
-                            req.session.loggedIn = true;
-            */
-            res.json(userData);
-        });
-    /*})*/
+            req.session.save(() => {
+                req.session.user_id = userData.id;
+                req.session.username = userData.username;
+                req.session.loggedIn = true;
+
+                res.json(userData);
+            });
+        })
 });
 
 // user login route
@@ -112,22 +111,22 @@ router.post('/login', (req, res) => {
             });
             return;
         }
-        /*
-                req.session.save(() => {
-                    // declare session variables
-                    req.session.user_id = userData.id;
-                    req.session.username = userData.username;
-                    req.session.loggedIn = true;*/
 
-        res.json({
-            user: userData,
-            message: 'Login successful'
+        req.session.save(() => {
+            // declare session variables
+            req.session.user_id = userData.id;
+            req.session.username = userData.username;
+            req.session.loggedIn = true;
+
+            res.json({
+                user: userData,
+                message: 'Login successful'
+            });
         });
-        /*});*/
     });
 });
 
-/*// user log out route
+// user log out route
 router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {
         req.session.destroy(() => {
@@ -137,7 +136,7 @@ router.post('/logout', (req, res) => {
         res.status(404).end();
     }
 });
-*/
+
 
 // update user
 router.put('/:id' /*, withAuth*/ , (req, res) => {
