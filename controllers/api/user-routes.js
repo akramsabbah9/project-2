@@ -33,29 +33,23 @@ router.get('/:id', (req, res) => {
                 id: req.params.id
             },
             include: [{
-                    model: Revision,
-                    attributes: ['id', 'created_at', 'article_id'],
+                model: Revision,
+                attributes: ['id', 'created_at', 'article_id'],
 
-                }, {
-                    model: Article,
-                    attributes: ['id', 'title'],
-                    through: Vote,
-                    as: 'voted_articles'
-                },
-                {
-                    model: Article,
-                    attributes: ['id', 'image_url'],
-                    through: Image,
-                    as: 'posted_images'
-                },
-                {
-                    model: Article,
-                    attributes: ['id', 'title'],
-                    through: Comment,
-                    as: 'comment_posts'
-                }
+            }, {
+                model: Comment,
+                attributes: ['id', 'article_id', 'created_at', 'article_id'],
 
-            ]
+            }, {
+                model: Image,
+                attributes: ['id', 'image_url', 'created_at'],
+
+            }, {
+                model: Article,
+                attributes: ['id', 'title'],
+                through: Vote,
+                as: 'voted_articles'
+            }, ]
         })
         .then(userData => {
             if (!userData) {

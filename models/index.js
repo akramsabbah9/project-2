@@ -36,8 +36,10 @@ User.hasMany(Vote, {
 });
 User.hasMany(Revision, {
     foreignKey: 'user_id',
-
 });
+User.hasMany(Image, {
+    foreignKey: 'user_id'
+})
 
 User.belongsToMany(Article, {
     through: Vote,
