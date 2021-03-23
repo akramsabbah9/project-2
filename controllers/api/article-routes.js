@@ -26,11 +26,11 @@ router.get("/", (req, res) => {
                     attributes: ["username"]
                 }
             },
-            // TODO: all images used by each article
-            // {
-            //     model: Image,
-            //     attributes: //TODO
-            // },
+            // all images used by this article
+            {
+                model: Image,
+                attributes: ["id", "image_url"]
+            },
             // TODO: all sources used by each article
             // {
             //     model: Source,
@@ -73,11 +73,11 @@ router.get("/:id", (req, res) => {
                     attributes: ["username"]
                 }
             },
-            // TODO: all images used by this article
-            // {
-            //     model: Image,
-            //     attributes: //TODO
-            // },
+            // all images used by this article
+            {
+                model: Image,
+                attributes: ["id", "image_url"]
+            },
             // TODO: all sources used by this article
             // {
             //     model: Source,
@@ -104,8 +104,7 @@ router.get("/:id", (req, res) => {
 
 
 // post a new article
-// TODO: maybe add the user who created the article?
-// TODO: maybe add the newly-created article to the edits table when it is made?
+// TODO: maybe add the newly-created article to the revision table when it is made?
 router.post("/", (req, res) => {
     // expects { title, content } in req.body
     Article.create({
@@ -133,7 +132,7 @@ router.put("/vote", checkVote, (req, res) => {
 
 
 // (put) update an article by id
-// TODO: maybe interface with the edits table, as done in votes?
+// TODO: maybe interface with the revision table, as done in votes?
 router.put("/:id", (req, res) => {
     // expects { title, content } in req.body
     Article.update(
