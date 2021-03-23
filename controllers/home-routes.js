@@ -6,4 +6,13 @@ const { Article } = require("../models");
 
 // single article: render a single article
 
+// route user to login page
+router.get("/login", (req, res) => {
+    if (req.session.loggedIn) {
+        return res.redirect("/");
+    }
+
+    res.render("login");
+});
+
 module.exports = router;
