@@ -1,22 +1,22 @@
 const router = require('express').Router();
-const { Revision, Article, User } = require('../../models');
+const { Revision, Article, User, Image } = require('../../models');
 
 router.get('/', (req, res) => {
-    Revision.findAll()
-        .then(revisionData => res.json(revisionData))
+    Image.findAll()
+        .then(imageData => res.json(imageData))
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
         });
 });
 router.get('/:id', (req, res) => {
-    Revision.findOne({
+    Image.findOne({
             where: {
                 id: req.params.id
             },
             include: [{
                     model: Article,
-                    attributes: ['id', 'title', 'content', 'created_at'],
+                    attributes: ['id', 'title', 'created_at'],
                 },
                 {
                     model: User,
@@ -24,20 +24,33 @@ router.get('/:id', (req, res) => {
                 }
             ]
         })
-        .then(revisionData => res.json(revisionData))
+        .then(imageData => res.json(imageData))
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
         });
 });
 router.post('/', (req, res) => {
-    // input: {"changes": "A bunch of edits","user_id": 1, "article_id": 2}
-    Revision.create({
-            changes: req.body.changes,
+    // input: {"image_url": "https://myimage.com","user_id": 1, "article_id": 2}
+    Image.create({
+            image_url: req.body.image_url,
             user_id: req.body.user_id,
             article_id: req.body.article_id
         })
-        .then(revisionData => res.json(revisionData))
+        .then(imageData => res.json(imageData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
+router.post("/", (req, res) => {
+    // expects { comment_text, user_id, article_id } in req.body
+    Comment.create({
+            image_url: req.body.image_url,
+            user_id: req.body.user_id,
+            article_id: req.body.article_id
+        })
+        .then(imageData => res.json(commentData))
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
@@ -45,19 +58,19 @@ router.post('/', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-    Revision.destroy({
+    Image.destroy({
             where: {
                 id: req.params.id
             }
         })
-        .then(revisionData => {
-            if (!revisionData) {
+        .then(imageData => {
+            if (!imageData) {
                 res.status(404).json({
-                    message: 'No revision found with this id!'
+                    message: 'No Image found with this id!'
                 });
                 return;
             }
-            res.json(revisionData);
+            res.json(imageData);
         })
         .catch(err => {
             console.log(err);
