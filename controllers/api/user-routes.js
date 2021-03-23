@@ -42,7 +42,12 @@ router.get('/:id', (req, res) => {
                     through: Vote,
                     as: 'voted_articles'
                 },
-
+                {
+                    model: Article,
+                    attributes: ['id', 'image_url'],
+                    through: Image,
+                    as: 'posted_images'
+                },
                 {
                     model: Article,
                     attributes: ['id', 'title'],

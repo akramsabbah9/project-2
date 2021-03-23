@@ -25,16 +25,7 @@ Article.belongsToMany(User, {
     as: 'voted_articles',
     foreignKey: 'article_id'
 });
-Article.belongsToMany(User, {
-    through: Comment,
-    as: 'comment_posts',
-    foreignKey: 'article_id'
-});
-Article.belongsToMany(User, {
-    through: Revision,
-    as: 'revisions_added',
-    foreignKey: 'article_id'
-});
+
 
 // User
 User.hasMany(Comment, {
@@ -45,23 +36,15 @@ User.hasMany(Vote, {
 });
 User.hasMany(Revision, {
     foreignKey: 'user_id',
+
 });
+
 User.belongsToMany(Article, {
     through: Vote,
     as: 'voted_articles',
     foreignKey: 'user_id'
 });
 
-User.belongsToMany(Article, {
-    through: Comment,
-    as: 'comment_posts',
-    foreignKey: 'user_id'
-});
-User.belongsToMany(Article, {
-    through: Revision,
-    as: 'revisions_added',
-    foreignKey: 'user_id'
-});
 
 // Comment 
 Comment.belongsTo(Article, {

@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
                 },
                 {
                     model: User,
-                    attributes: ['username']
+                    attributes: ['id', 'username']
                 }
             ]
         })
@@ -44,7 +44,20 @@ router.post('/', (req, res) => {
         .then(revisionData => res.json(revisionData))
         .catch(err => {
             console.log(err);
-            res.status(400).json(err);
+            res.status(500).json(err);
+        });
+});
+router.post("/", (req, res) => {
+    // expects { comment_text, user_id, article_id } in req.body
+    Comment.create({
+            comment_text: req.body.comment_text,
+            user_id: req.body.user_id,
+            article_id: req.body.article_id
+        })
+        .then(commentData => res.json(commentData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
         });
 });
 

@@ -13,6 +13,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(routes);
 
 /* BEGIN SERVER */
-sequelize.sync({ force: false }).then(() => {
+sequelize.sync({ force: true }).then(() => {
     app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 });
