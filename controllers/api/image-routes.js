@@ -43,19 +43,6 @@ router.post('/', (req, res) => {
             res.status(500).json(err);
         });
 });
-router.post("/", (req, res) => {
-    // expects { comment_text, user_id, article_id } in req.body
-    Comment.create({
-            image_url: req.body.image_url,
-            user_id: req.body.user_id,
-            article_id: req.body.article_id
-        })
-        .then(imageData => res.json(commentData))
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-});
 
 router.delete('/:id', (req, res) => {
     Image.destroy({
