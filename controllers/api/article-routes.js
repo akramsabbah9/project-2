@@ -21,6 +21,7 @@ router.get("/", (req, res) => {
             // all comments on each article
             {
                 model: Comment,
+                attributes: ["id", "comment_text", "user_id", "article_id", "created_at"],
                 include: {
                     model: User,
                     attributes: ["username"]
@@ -31,16 +32,11 @@ router.get("/", (req, res) => {
                 model: Image,
                 attributes: ["id", "image_url"]
             },
-            // TODO: all sources used by each article
-            // {
-            //     model: Source,
-            //     attributes: //TODO
-            // },
-            // TODO: include edit history of each article?
-            // {
-            //     model: Edit,
-            //     attributes: //TODO
-            // }
+            // all revisions to this article
+            {
+                model: Revision,
+                attributes: ["id", "changes"]
+            }
         ]
     })
     .then(articleData => res.json(articleData))
@@ -68,6 +64,7 @@ router.get("/:id", (req, res) => {
             // all comments on this article
             {
                 model: Comment,
+                attributes: ["id", "comment_text", "user_id", "article_id", "created_at"],
                 include: {
                     model: User,
                     attributes: ["username"]
@@ -78,16 +75,11 @@ router.get("/:id", (req, res) => {
                 model: Image,
                 attributes: ["id", "image_url"]
             },
-            // TODO: all sources used by this article
-            // {
-            //     model: Source,
-            //     attributes: //TODO
-            // },
-            // TODO: include edit history of this article?
-            // {
-            //     model: Edit,
-            //     attributes: //TODO
-            // }
+            // all revisions to this article
+            {
+                model: Revision,
+                attributes: ["id", "changes"]
+            }
         ]
     })
     .then(articleData => {
