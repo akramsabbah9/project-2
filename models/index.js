@@ -51,6 +51,7 @@ User.belongsToMany(Article, {
     as: 'voted_articles',
     foreignKey: 'user_id'
 });
+
 User.belongsToMany(Article, {
     through: Comment,
     as: 'comment_posts',
@@ -82,6 +83,7 @@ Vote.belongsTo(User, {
 Image.belongsTo(Article, {
     foreignKey: "article_id"
 });
+
 
 // Revision
 Revision.belongsTo(Article, {

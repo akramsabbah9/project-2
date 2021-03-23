@@ -1,11 +1,20 @@
 const router = require('express').Router();
-const { User, Article, Comment, Revision, Image, Vote } = require('../../models');
+const {
+    User,
+    Article,
+    Comment,
+    Revision,
+    Image,
+    Vote
+} = require('../../models');
 
 
 // get all users
 router.get('/', (req, res) => {
     User.findAll({
-            attributes: { exclude: ['password'] }
+            attributes: {
+                exclude: ['password']
+            }
         })
         .then(userData => res.json(userData))
         .catch(err => {
@@ -17,35 +26,23 @@ router.get('/', (req, res) => {
 // get a specific user by ID
 router.get('/:id', (req, res) => {
     User.findOne({
-            attributes: { exclude: ['password'] },
+            attributes: {
+                exclude: ['password']
+            },
             where: {
                 id: req.params.id
             },
             include: [{
-                    model: Article,
-                    attributes: ['id', 'title', 'created_at']
-                },
-                // We can add or remove values for this as needed
-                {
                     model: Revision,
-                    attributes: ['id', 'created_at'],
-                    include: {
-                        model: Article,
-                        attributes: ['title']
-                    }
-                },
-                {
+                    attributes: ['id', 'created_at', 'article_id'],
+
+                }, {
                     model: Article,
                     attributes: ['id', 'title'],
                     through: Vote,
                     as: 'voted_articles'
                 },
-                {
-                    model: Article,
-                    attributes: ['id', 'title'],
-                    through: Image,
-                    as: 'image_posts'
-                },
+
                 {
                     model: Article,
                     attributes: ['id', 'title'],
@@ -57,7 +54,9 @@ router.get('/:id', (req, res) => {
         })
         .then(userData => {
             if (!userData) {
-                res.status(404).json({ message: 'No user found with that id' });
+                res.status(404).json({
+                    message: 'No user found with that id'
+                });
                 return;
             }
             res.json(userData);
@@ -97,14 +96,18 @@ router.post('/login', (req, res) => {
         }
     }).then(userData => {
         if (!userData) {
-            res.status(400).json({ message: 'No user found with that email address' });
+            res.status(400).json({
+                message: 'No user found with that email address'
+            });
             return;
         }
 
         const validPassword = userData.passwordCheck(req.body.password);
 
         if (!validPassword) {
-            res.status(400).json({ message: 'Password incorrect' });
+            res.status(400).json({
+                message: 'Password incorrect'
+            });
             return;
         }
         /*
@@ -114,7 +117,10 @@ router.post('/login', (req, res) => {
                     req.session.username = userData.username;
                     req.session.loggedIn = true;*/
 
-        res.json({ user: userData, message: 'Login successful' });
+        res.json({
+            user: userData,
+            message: 'Login successful'
+        });
         /*});*/
     });
 });
@@ -143,7 +149,9 @@ router.put('/:id' /*, withAuth*/ , (req, res) => {
         })
         .then(userData => {
             if (!userData[0]) {
-                res.status(404).json({ message: 'No user found with that id' });
+                res.status(404).json({
+                    message: 'No user found with that id'
+                });
                 return;
             }
             res.json(userData);
@@ -163,7 +171,9 @@ router.delete('/:id', /* withAuth,*/ (req, res) => {
         })
         .then(userData => {
             if (!userData) {
-                res.status(404).json({ message: 'No user found with that id' });
+                res.status(404).json({
+                    message: 'No user found with that id'
+                });
                 return;
             }
             res.json(userData);

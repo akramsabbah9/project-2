@@ -1,5 +1,8 @@
 // Model for Revision Tables - holds the history of an article's edited content
-const { Model, DataTypes } = require('sequelize');
+const {
+    Model,
+    DataTypes
+} = require('sequelize');
 const sequelize = require('../config/connection');
 
 class Revision extends Model {}
@@ -15,12 +18,14 @@ Revision.init({
     changes: {
         type: DataTypes.TEXT,
         allowNull: false,
+        unique: false,
         validate: {
             len: [1]
         }
     },
     user_id: {
         type: DataTypes.INTEGER,
+        unique: false,
         references: {
             model: 'user',
             key: 'id'
@@ -28,6 +33,7 @@ Revision.init({
     },
     article_id: {
         type: DataTypes.INTEGER,
+        unique: false,
         references: {
             model: 'article',
             key: 'id'

@@ -1,5 +1,9 @@
 const router = require('express').Router();
-const { Revision, Article, User } = require('../../models');
+const {
+    Revision,
+    Article,
+    User
+} = require('../../models');
 
 router.get('/', (req, res) => {
     Revision.findAll()
@@ -14,14 +18,9 @@ router.get('/:id', (req, res) => {
             where: {
                 id: req.params.id
             },
-            attributes: ['changes', 'user-id', 'article_id', 'created_at'],
             include: [{
                     model: Article,
-                    attributes: ['id', 'title', 'changes', 'article_id', 'user_id', 'created_at'],
-                    include: {
-                        model: User,
-                        attributes: ['username']
-                    }
+                    attributes: ['id', 'title', 'content', 'created_at'],
                 },
                 {
                     model: User,
@@ -57,7 +56,9 @@ router.delete('/:id', (req, res) => {
         })
         .then(revisionData => {
             if (!revisionData) {
-                res.status(404).json({ message: 'No revision found with this id!' });
+                res.status(404).json({
+                    message: 'No revision found with this id!'
+                });
                 return;
             }
             res.json(revisionData);
