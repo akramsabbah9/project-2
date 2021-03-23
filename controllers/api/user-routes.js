@@ -35,7 +35,10 @@ router.get('/:id', (req, res) => {
             include: [{
                 model: Revision,
                 attributes: ['id', 'created_at', 'article_id'],
-
+                include: {
+                    model: Article,
+                    attributes: ['title']
+                }
             }, {
                 model: Comment,
                 attributes: ['id', 'article_id', 'created_at', 'article_id'],
