@@ -11,14 +11,6 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 
 /* SETUP AND MIDDLEWARE */
-const app = express();
-const PORT = process.env.PORT || 3001;
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(routes);
-
-
 const sess = {
     secret: process.env.SECRET, // use dotenv to protect your secret'
     cookie: { maxAge: 30 * 60 * 1000 }, // maxAge -> 30 mins
@@ -29,7 +21,18 @@ const sess = {
     })
 };
 
+const app = express();
+const PORT = process.env.PORT || 3001;
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use(session(sess));
+app.use(routes);
+
+
+
+
 
 /* BEGIN SERVER */
 sequelize.sync({ force: false }).then(() => {
