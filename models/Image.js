@@ -25,16 +25,13 @@ Image.init({
             key: 'id'
         }
     },
-
-    // Could also site the user who posted the image here
-    /*
-        user_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'user',
-                key: 'id'
-            }
-        }*/
+    user_id: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: 'user',
+            key: 'id'
+        }
+    }
 }, {
     sequelize,
     freezeTableName: true,
