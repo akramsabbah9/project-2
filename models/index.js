@@ -68,6 +68,9 @@ Vote.belongsTo(User, {
 Image.belongsTo(Article, {
     foreignKey: "article_id"
 });
+Image.belongsTo(User, {
+    foreignKey: "user_id"
+});
 
 
 // Revision
