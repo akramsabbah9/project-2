@@ -5,9 +5,16 @@ const { Article } = require("../models");
 
 // front page: get article count and display it
 router.get("/", (req, res) => {
-    sequelize.query("SELECT COUNT(*) FROM article", { type: QueryTypes.SELECT })
+    sequelize.query(
+        "SELECT COUNT(*) AS `article_count` FROM article",
+        { type: QueryTypes.SELECT }
+    )
     .then(counterData => {
-        res.json(counterData);
+        //res.json(counterData);
+        // serialize data and render homepage
+        const article_count = counterData.get({ plain: true });
+
+        res.render("homepage", { article_count, loggedIn: req.session.loggedIn });
     })
     .catch(err => {
         console.log(err);
