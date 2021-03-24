@@ -3,35 +3,16 @@
 // TODO: on startup get vote info about this page to style the upvote/downvote buttons
 
 const upvoteHandler = async event => {
-    event.preventDefault();
-
-    // TODO: conditional logic to make this reset your vote if you already upvoted
-
-    // get article_id from url
-    const url = window.location.toString().split("/");
-    const id = url[url.length - 1];
-
-    // upvote the article
-    const response = await fetch("/api/articles/vote", {
-        method: "PUT",
-        body: JSON.stringify({
-            value: 1,
-            article_id: id
-        }),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    });
-
-    if (response.ok) {
-        document.location.reload();
-    }
-    else {
-        alert(response.statusText);
-    }
+    // call voteHandler with a value of 1
+    voteHandler(event, 1);
 };
 
 const downvoteHandler = async event => {
+    // call voteHandler with a value of -1
+    voteHandler(event, -1);
+}
+
+const voteHandler = async (event, val) => {
     event.preventDefault();
 
     // TODO: conditional logic to make this reset your vote if you already upvoted
@@ -40,11 +21,11 @@ const downvoteHandler = async event => {
     const url = window.location.toString().split("/");
     const id = url[url.length - 1];
 
-    // downvote the article
+    // vote on the article
     const response = await fetch("/api/articles/vote", {
         method: "PUT",
         body: JSON.stringify({
-            value: -1,
+            value: val,
             article_id: id
         }),
         headers: {
