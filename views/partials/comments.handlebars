@@ -1,0 +1,13 @@
+{{!-- pass in an array of Comments, which has been JOINed with Users that posted --}}
+<div id="comments">
+    {{#each this}}
+    <article class="card">
+        <div class="card-header">
+            {{user.username}} on {{format_date created_at}}
+        </div>
+        <div class="card-body">
+            {{comment_text}}
+        </div>
+    </article>
+    {{/each}}
+</div>
