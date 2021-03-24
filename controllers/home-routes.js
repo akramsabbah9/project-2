@@ -75,6 +75,21 @@ router.get("/article/:id", (req, res) => {
 });
 
 
+// render an article's revision history
+router.get("/article/:id/history", (req, res) => {
+    Revision.findAll({
+        where: { article_id: req.params.id }
+    })
+    .then(revisionData => {
+        res.json(revisionData);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
+
 // route user to login page
 router.get("/login", (req, res) => {
     if (req.session.loggedIn) {
