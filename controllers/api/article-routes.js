@@ -114,12 +114,17 @@ router.post("/", (req, res) => {
 // (put) vote on an article by id
 router.put("/vote", checkVote, (req, res) => {
     // expects { value, user_id, article_id } in req.body
-    Article.vote(req.body, {Vote, Comment, User, Image, Revision })
-    .then(articleData => res.json(articleData))
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
+    if (req.session) {
+        Article.vote(
+            { ...req.body, user_id: req.session.user_id },
+            {Vote, Comment, User, Image, Revision }
+        )
+        .then(articleData => res.json(articleData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+    }
 });
 
 
