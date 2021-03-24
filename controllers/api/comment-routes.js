@@ -34,16 +34,19 @@ router.get("/:id", (req, res) => {
 // post a new comment
 router.post("/", (req, res) => {
     // expects { comment_text, user_id, article_id } in req.body
-    Comment.create({
-        comment_text: req.body.comment_text,
-        user_id: req.body.user_id,
-        article_id: req.body.article_id
-    })
-    .then(commentData => res.json(commentData))
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
+    if (req.session) { // check if the session exists
+        Comment.create({
+            comment_text: req.body.comment_text,
+            post_id: req.body.post_id,
+            // use the id from the session
+            user_id: req.session.user_id
+        })
+        .then(commentData => res.json(commentData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+    }
 });
 
 
