@@ -10,11 +10,10 @@ router.get("/", (req, res) => {
         { type: QueryTypes.SELECT }
     )
     .then(counterData => {
-        res.json(counterData);
         // serialize data and render homepage
-        // const count = counterData.get({ plain: true });
+        const count = counterData[0].article_count;
 
-        // res.render("homepage", { count, loggedIn: req.session.loggedIn });
+        res.render("homepage", { count, loggedIn: req.session.loggedIn });
     })
     .catch(err => {
         console.log(err);
