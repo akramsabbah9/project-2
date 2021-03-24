@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="card-image">
+    <figure class="image is-4by3">
+      <img src={{! post-info partial/image}} alt="{{! post-info partial/alt}}">
+    </figure>
+  </div>
+  <div class="card-content">
+    <div class="media">
+      <div class="media-content">
+        <p class="title is-4">{{post.title}}</p>
+      </div>
+    </div>
+
+    <div class="content" id='summary'>
+      
+      <br>
+      <time>{{created_at}}</time>
+    </div>
+  </div>
+  <footer class="card-footer">
+    <a href="/post/{{id}}" class="card-footer-item">View</a>
+    <a href="#" class="card-footer-item">Edit</a>
+  </footer>
+</div>
