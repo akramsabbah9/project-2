@@ -1,0 +1,10 @@
+<div id="revision-history">
+    <ul>
+        {{#each history}}
+        <li>
+            <p>Added by {{user_id}} on {{format_date created_at}}</p>
+        </li>
+        {{/each}}
+    </ul>
+</div>
+<script src="/javascript/history.js"></script>

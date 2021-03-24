@@ -78,10 +78,14 @@ router.get("/article/:id", (req, res) => {
 // render an article's revision history
 router.get("/article/:id/history", (req, res) => {
     Revision.findAll({
-        where: { article_id: req.params.id }
+        where: { article_id: req.params.id },
+        attributes: ["id", "changes", "user_id", "article_id", "created_at", "updated_at"]
     })
     .then(revisionData => {
-        res.json(revisionData);
+        // serialize data and render article-history
+        const history = revisionData.map(revision => revision.get({ plain: true }));
+
+        res.render("article-history", { history, loggedIn: req.session.loggedIn });
     })
     .catch(err => {
         console.log(err);
