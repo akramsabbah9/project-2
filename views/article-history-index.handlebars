@@ -2,14 +2,15 @@
 	<div>
 		{{article.title}}
 	</div>
+
+	<div>
+		<ol class="revision-history-list">
+			{{#each revisions as |revision|}}
+			<li>
+				<a href="/revision/{{id}}">
+					{{format_date created_at}}, {{format_time created_at}}</a>
+			</li>
+			{{/each}}
+		</ol>
+	</div>
 </article>
-<div>
-	<ol class="revision-history-list">
-		{{#each revisions as |revision|}}
-		<li>
-			<a href="/revision/{{id}}">
-				{{format_date created_at}}, {{format_time created_at}}</a>
-		</li>
-		{{/each}}
-	</ol>
-</div>
