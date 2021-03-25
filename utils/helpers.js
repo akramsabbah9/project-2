@@ -4,4 +4,9 @@ const format_date = date => {
     return `${newDate.getMonth() + 1}/${newDate.getDate()}/${newDate.getFullYear()}`;
 };
 
-module.exports = { format_date };
+const format_time = date => {
+    const newDate = new Date(date);
+    return `${newDate.getHours() + 1}:${newDate.getMinutes()}`;
+};
+
+module.exports = { format_date, format_time };
