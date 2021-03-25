@@ -1,0 +1,26 @@
+<article class="post">
+	<div class="current-post">
+		<h2 class="view-post-title">
+			{{article.title}}
+		</h2></br>
+		</h2>
+		<p class="post-content">{{article.content}}</p>
+
+	</div>
+	<div class="meta">
+		</br>
+		posted by {{article.user.username}}
+		</br>
+
+		{{{{!--TO-DO: helper - date_format--}} article.created_at}}
+		</br>
+
+		{{post.comments.length}} {{word_format "comment" comments.length}}
+		</br>
+
+	</div>
+</article>
+{{#if loggedIn}}
+{{!--{{>add comment partial}}--}}
+{{/if}}
+{{!--{{>comment partial}}--}}
