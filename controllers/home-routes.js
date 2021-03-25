@@ -32,6 +32,30 @@ router.get("/article/create", (req, res) => {
 });
 
 
+// route user to a random article
+router.get("/random", (req, res) => {
+    Article.findAll({
+        order: sequelize.literal("RAND()"), limit: 1
+    })
+    .then(articleData => {
+        // if the results are empty (no articles, respond with 404)
+        if (!articleData) {
+            return res.status(404).json({ message: "No articles have been created yet" });
+        }
+        res.json(articleData);
+        // serialize data and render article
+        // const article = articleData.get({ plain: true });
+
+        // res.render("single-article", { article, loggedIn: req.session.loggedIn });
+        
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
+
 // single article: render a single article
 // TODO: instead of doing this by id, use the article name separated by underscores
 router.get("/article/:id", (req, res) => {
