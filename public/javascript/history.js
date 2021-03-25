@@ -2,9 +2,10 @@
 // then update the article with that past revision
 const revisionButtonHandler = async event => {
     event.preventDefault();
-
-    // if a button was clicked, grab its revision id
-    const rev_id = 1;
+    
+    // if the revert button was clicked, grab its data id, otherwise return
+    let rev_id = event.target.getAttribute("data-id");
+    if (!rev_id) return;
 
     // prompt user to revert
     const ans = confirm("Do you wish to revert the article back to this revision?");
@@ -25,7 +26,6 @@ const revisionButtonHandler = async event => {
 
 // update an article with a past revision's content
 const revert = async (article_id, content) => {
-
     const response = await fetch(`/api/articles/${article_id}`, {
         method: "PUT",
         body: JSON.stringify({
@@ -37,7 +37,7 @@ const revert = async (article_id, content) => {
     });
 
     if (response.ok) {
-        document.location.replace(`/article/${article_id}`);
+        window.location.href = `/article/${article_id}`;
     }
     else {
         alert(response.statusText);
