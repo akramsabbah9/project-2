@@ -83,9 +83,4 @@ router.get("/login", (req, res) => {
     res.render("login");
 });
 
-router.get('/article-history', (req, res) => {
-
-    res.render('article-history');
-});
-
 module.exports = router;
