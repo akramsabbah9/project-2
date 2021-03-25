@@ -11,9 +11,9 @@ router.get("/", (req, res) => {
         .then(counterData => {
             res.json(counterData);
             // serialize data and render homepage
-            // const count = counterData.get({ plain: true });
+            const count = counterData.get({ plain: true });
 
-            // res.render("homepage", { count, loggedIn: req.session.loggedIn });
+            res.render("homepage", { count, loggedIn: req.session.loggedIn });
         })
         .catch(err => {
             console.log(err);
@@ -63,9 +63,9 @@ router.get("/article/:id", (req, res) => {
             }
             res.json(articleData);
             // serialize data and render homepage
-            // const article = articleData.get({ plain: true });
+            const article = articleData.get({ plain: true });
 
-            // res.render("single-article", { article, loggedIn: req.session.loggedIn });
+            res.render("single-article", { article, loggedIn: req.session.loggedIn });
         })
         .catch(err => {
             console.log(err);

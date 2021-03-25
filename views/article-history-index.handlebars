@@ -5,10 +5,10 @@
 
 	<div>
 		<ol class="revision-history-list">
-			{{#each revisions as |revision|}}
+			{{#each}}
 			<li>
-				<a href="/revision/{{id}}">
-					{{format_date created_at}}, {{format_time created_at}}</a>
+				{{article.user.username}} - <a href="/revisions/{{article.revisions.id}}">{{format_date  article.revisions.created_at}}, {{format_time
+					 article.revisions.created_at}}</a>
 			</li>
 			{{/each}}
 		</ol>

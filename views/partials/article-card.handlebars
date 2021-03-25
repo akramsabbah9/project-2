@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-image">
     <figure class="image is-4by3">
-      <img src={{image.image_url}} alt="">
+      <img src={{article.image.image_url}} alt="">
     </figure>
   </div>
   <div class="card-content">
@@ -14,11 +14,11 @@
     <div class="content" id='summary'>
       
       <br>
-      <time>{{format_date created_at}}, {{format_time created_at}}</time>
+      <time>{{format_date article.created_at}}, {{format_time article.created_at}}</time>
     </div>
   </div>
   <footer class="card-footer">
-    <a href="/post/{{id}}" class="card-footer-item">View</a>
+    <a href="/articles/{{article.id}}" class="card-footer-item">View</a>
     <a href="#" class="card-footer-item">Edit</a>
   </footer>
 </div>
