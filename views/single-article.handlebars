@@ -11,9 +11,7 @@
 		<p class="article-content">{{article.content}}</p>
 	</div>
 	<div class="meta">
-		</br>
-		created by {{article.user.username}}
-		</br>
+
 
 		{{format_date article.created_at}},
 		{{format_time article.created_at}}
@@ -26,7 +24,7 @@
 {{#if loggedIn}}
 {{!--{{>add-comments}} - TODO - Create add-comments partial--}}
 {{/if}}
-{{>comments}}
+{{>comments article.comments}}
 
 {{!--<script src="/javascript/revisionIndex.js"></script>--}}
 {{!--TODO - write revisionIndex.js in public/javascript--}}
