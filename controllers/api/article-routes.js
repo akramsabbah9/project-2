@@ -1,8 +1,17 @@
 /* routes for articles in backend api */
 const router = require("express").Router();
 const sequelize = require("../../config/connection");
-const { User, Article, Comment, Image, Revision, Vote } = require("../../models");
-const { checkVote } = require("../../utils/middleware");
+const {
+    User,
+    Article,
+    Comment,
+    Image,
+    Revision,
+    Vote
+} = require("../../models");
+const {
+    checkVote
+} = require("../../utils/middleware");
 
 // get all articles
 router.get("/", (req, res) => {
@@ -49,7 +58,9 @@ router.get("/", (req, res) => {
 // get one article by id
 router.get("/:id", (req, res) => {
     Article.findOne({
-            where: { id: req.params.id },
+            where: {
+                id: req.params.id
+            },
             attributes: [
                 "id", "title", "content", "created_at", "updated_at", [
                     sequelize.literal(
@@ -82,7 +93,9 @@ router.get("/:id", (req, res) => {
         })
         .then(articleData => {
             if (!articleData) {
-                return res.status(404).json({ message: "No article found with this id" });
+                return res.status(404).json({
+                    message: "No article found with this id"
+                });
             }
             res.json(articleData);
         })
@@ -95,7 +108,7 @@ router.get("/:id", (req, res) => {
 
 // post a new article
 // TODO: maybe add the newly-created article to the revision table when it is made?
-router.post("/", (req, res) => {
+router.post("/", withAuth, (req, res) => {
     // expects { title, content } in req.body
     Article.create({
             title: req.body.title,
@@ -110,9 +123,15 @@ router.post("/", (req, res) => {
 
 
 // (put) vote on an article by id
-router.put("/vote", checkVote, (req, res) => {
+router.put("/vote", withAuth, checkVote, (req, res) => {
     // expects { value, user_id, article_id } in req.body
-    Article.vote(req.body, { Vote, Comment, User, Image, Revision })
+    Article.vote(req.body, {
+            Vote,
+            Comment,
+            User,
+            Image,
+            Revision
+        })
         .then(articleData => res.json(articleData))
         .catch(err => {
             console.log(err);
@@ -123,17 +142,21 @@ router.put("/vote", checkVote, (req, res) => {
 
 // (put) update an article by id
 // TODO: maybe interface with the revision table, as done in votes?
-router.put("/:id", (req, res) => {
+router.put("/:id", withAuth, (req, res) => {
     // expects { title, content } in req.body
     Article.update({
             title: req.body.title,
             content: req.body.content
         }, {
-            where: { id: req.params.id }
+            where: {
+                id: req.params.id
+            }
         })
         .then(articleData => {
             if (!articleData[0]) {
-                return res.status(404).json({ message: "No article found with this id" });
+                return res.status(404).json({
+                    message: "No article found with this id"
+                });
             }
             res.json(articleData);
         })
@@ -145,13 +168,17 @@ router.put("/:id", (req, res) => {
 
 
 // delete an article by id
-router.delete("/:id", (req, res) => {
+router.delete("/:id", withAuth, (req, res) => {
     Article.destroy({
-            where: { id: req.params.id }
+            where: {
+                id: req.params.id
+            }
         })
         .then(articleData => {
             if (!articleData) {
-                return res.status(404).json({ message: "No article found with this id" });
+                return res.status(404).json({
+                    message: "No article found with this id"
+                });
             }
             res.json(articleData);
         })

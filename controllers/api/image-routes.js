@@ -32,7 +32,7 @@ router.get('/:id', (req, res) => {
             res.status(500).json(err);
         });
 });
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
     // input: {"image_url": "https://myimage.com","user_id": 1, "article_id": 2}
     Image.create({
             image_url: req.body.image_url,
@@ -46,7 +46,7 @@ router.post('/', (req, res) => {
         });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
     Image.destroy({
             where: {
                 id: req.params.id

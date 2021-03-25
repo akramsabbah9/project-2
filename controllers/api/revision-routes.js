@@ -30,7 +30,7 @@ router.get('/:id', (req, res) => {
             res.status(500).json(err);
         });
 });
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
     // input: {"changes": "A bunch of edits","user_id": 1, "article_id": 2}
     Revision.create({
             changes: req.body.changes,
@@ -44,7 +44,7 @@ router.post('/', (req, res) => {
         });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
     Revision.destroy({
             where: {
                 id: req.params.id
