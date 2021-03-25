@@ -116,7 +116,19 @@ router.post("/", withAuth, (req, res) => {
             title: req.body.title,
             content: req.body.content
         })
-        .then(articleData => res.json(articleData))
+        .then(articleData => {
+            // grab id from response data
+            const article = articleData.get({ plain: true });
+            const article_id = article.id;
+
+            // if create successful, make a revision with this information
+            Revision.create({
+                    changes: req.body.content,
+                    user_id: req.session.user_id,
+                    article_id: article_id
+                })
+                .then(revisionData => res.json(revisionData));
+        })
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
@@ -154,7 +166,13 @@ router.put("/:id", withAuth, (req, res) => {
                     message: "No article found with this id"
                 });
             }
-            res.json(articleData);
+            // if update successful, make a revision with these changes
+            Revision.create({
+                    changes: req.body.content,
+                    user_id: req.session.user_id,
+                    article_id: req.params.id
+                })
+                .then(revisionData => res.json(revisionData));
         })
         .catch(err => {
             console.log(err);
