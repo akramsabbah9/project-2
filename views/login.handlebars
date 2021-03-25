@@ -4,7 +4,7 @@
             <div class='column'>
                 <form class='box'>
                     <div class='card'>
-                        <div class='card-content login'>
+                        <div class='card-content login-form'>
                             <p class='title'>
                                 Already a Member?
                             </p>
@@ -14,7 +14,7 @@
                                 <div class='field'>
                                     <label class='label'>Email</label>
                                     <div class='control has-icons-left'>
-                                        <input class='input' type='email' placeholder='Email Address'>
+                                        <input class='input' type='email' id='email-login' placeholder='Email Address'>
                                         <span class='icon is-small is-left'>
                                             <i class='fas fa-envelope'></i>
                                         </span>
@@ -23,7 +23,7 @@
                                 <div class='field'>
                                     <label class='label'>Password</label>
                                     <div class='control has-icons-left'>
-                                        <input class='input' type='text' placeholder='Password'>
+                                        <input class='input' type='text' id='password-login' placeholder='Password'>
                                         <span class='icon is-left'>
                                             <i class='fas fa-lock'></i>
                                         </span>
@@ -31,9 +31,9 @@
                                 </div>
                                 <footer class='card-footer'>
                                     <p class='card-footer-item'>
-                                        <span>
-                                            Register
-                                        </span>
+                                        <button type='submit'>
+                                            Login
+                                        </button>
                                     </p>
                                 </footer>
                             </div>
@@ -43,8 +43,8 @@
                         <nav class = "tabs">
                             <div class = "container">
                                 <ul>
-                                    <li><a>Signup instead</a></li>
-                                    <li><a>Home</a></li>
+                                    <li><a href='/signup'>Signup instead</a></li>
+                                    <li><a href='/homepage'>Home</a></li>
                                 </ul>
                             </div>
                         </nav>
