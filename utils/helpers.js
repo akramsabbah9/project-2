@@ -6,7 +6,9 @@ const format_date = date => {
 
 const format_time = date => {
     const newDate = new Date(date);
-    return `${newDate.getHours() + 1}:${newDate.getMinutes()}`;
+    const hours = newDate.getHours();
+
+    return `${(hours + 11) % 12 + 1}:${newDate.getMinutes()} ${(hours < 12) ? "AM" : "PM"}`;
 };
 
 module.exports = { format_date, format_time };

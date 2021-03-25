@@ -80,7 +80,11 @@ router.get("/article/:id/history", (req, res) => {
     Revision.findAll({
         where: { article_id: req.params.id },
         attributes: ["id", "user_id", "created_at", "updated_at"],
-        order: [ ["created_at", "DESC"] ]
+        order: [ ["created_at", "DESC"] ],
+        include: {
+            model: User,
+            attributes: ["username"]
+        }
     })
     .then(revisionData => {
         // serialize data and render article-history
