@@ -1,1 +1,28 @@
-<button data-id="{{}}">Revert</button>
+
+
+<article class="article-history">
+	<div>
+		{{article.title}}
+		<button data-id="{{revision.article_id}}">Revert</button>
+		</br>
+		
+		<p class="article-content">{{revision.changes}}</p>
+	</div>
+	<div class="meta">
+		</br>
+		written by {{article.user.username}}
+		</br>
+
+		{{format_date revision.created_at}},
+		{{format_time revision.created_at}}
+		</br>
+
+		{{article.comments.length}} {{word_format "comment" comments.length}}
+		</br>
+	</div>
+</article>
+{{#if loggedIn}}
+{{!--{{>add-comments}} - TODO - Create add-comments partial--}}
+{{/if}}
+{{>comments}}
+
