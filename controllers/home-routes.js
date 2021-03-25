@@ -42,11 +42,11 @@ router.get("/random", (req, res) => {
         if (!articleData) {
             return res.status(404).json({ message: "No articles have been created yet" });
         }
-        res.json(articleData);
-        // serialize data and render article
-        // const article = articleData.get({ plain: true });
+        // res.json(articleData);
+        // get id from article data and redirect user to that endpoint
+        const article_id = articleData[0].id;
 
-        // res.render("single-article", { article, loggedIn: req.session.loggedIn });
+        res.redirect(`/article/${article_id}`);
         
     })
     .catch(err => {
