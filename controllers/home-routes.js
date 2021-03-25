@@ -3,6 +3,8 @@ const { QueryTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 const { User, Article, Comment, Image, Revision } = require("../models");
 
+// TODO - Add Logout Route
+
 // front page: get article count and display it
 router.get("/", (req, res) => {
     sequelize.query(
