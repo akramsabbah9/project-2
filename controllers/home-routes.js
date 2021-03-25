@@ -22,6 +22,16 @@ router.get("/", (req, res) => {
 });
 
 
+// render the new-article page
+router.get("/article/create", (req, res) => {
+    // if (!req.session.loggedIn) { //TODO: remove when withAuth added
+    //     return res.redirect("/");
+    // }
+
+    res.render("new-article", { loggedIn: req.session.loggedIn });
+});
+
+
 // single article: render a single article
 // TODO: instead of doing this by id, use the article name separated by underscores
 router.get("/article/:id", (req, res) => {
@@ -75,6 +85,16 @@ router.get("/article/:id", (req, res) => {
 });
 
 
+// render the new-article page
+router.get("/article/:id/edit", (req, res) => {
+    // if (!req.session.loggedIn) { //TODO: remove when withAuth added
+    //     return res.redirect("/");
+    // }
+
+    res.render("edit-article", { loggedIn: req.session.loggedIn });
+});
+
+
 // render an article's revision history
 router.get("/article/:id/history", (req, res) => {
     Revision.findAll({
@@ -99,13 +119,6 @@ router.get("/article/:id/history", (req, res) => {
 });
 
 
-// TODO: view a single revision of an article?
-// TODO: it would show the article as it was previously
-// router.get("/article/:id/history/view", (req, res) => {
-//     ;
-// });
-
-
 // route user to login page
 router.get("/login", (req, res) => {
     if (req.session.loggedIn) {
@@ -113,6 +126,15 @@ router.get("/login", (req, res) => {
     }
 
     res.render("login");
+});
+
+// route user to login page
+router.get("/signup", (req, res) => {
+    if (req.session.loggedIn) {
+        return res.redirect("/");
+    }
+
+    res.render("signup");
 });
 
 module.exports = router;
