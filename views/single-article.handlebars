@@ -2,12 +2,10 @@
 	<div>
 		{{article.title}}
 		</br>
-		{{!--TODO - write javascript button handler (see below)--}}
-		{{!-- when rev-btn is clicked, article-history-index will rend using the article's revisions by using the article_id--}}
-		<button class="rev-btn" data-id="{{article.id}}">
-			{{article.revisions.length}}
-			{{word_format "revision" article.revisions.length}}
-		</button>
+		<a href="/article/{{article.id}}/history">{{article.revisions.length}}
+			{{word_format "revision" article.revisions.length}}</a>
+		<a href="/article/{{article.id}}/edit">Edit</a>
+
 		<p class="article-content">{{article.content}}</p>
 	</div>
 	<div class="meta">
@@ -25,6 +23,3 @@
 {{!--{{>add-comments}} - TODO - Create add-comments partial--}}
 {{/if}}
 {{>comments article.comments}}
-
-{{!--<script src="/javascript/revisionIndex.js"></script>--}}
-{{!--TODO - write revisionIndex.js in public/javascript--}}
