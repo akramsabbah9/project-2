@@ -1,8 +1,15 @@
-<div id="revision-history">
-    <ul>
+<div>
+    <h2 class="title">Revisions for this article:</h2>
+    <ul id="revision-history">
         {{#each history}}
-        <li>
-            <p>Added by {{user_id}} on {{format_date created_at}}</p>
+        <li class="card">
+            <div class="card-header card-header-title is-flex is-justify-content-space-between">
+                <p>Added by {{user_id}} on {{format_date created_at}}</p>
+                <div>
+                    <button data-id="{{id}}" class="button is-danger">Revert to this Revision</button>
+                    {{!-- <button class="button is-warning">View this Revision</button> --}}
+                </div>
+            </div>
         </li>
         {{/each}}
     </ul>

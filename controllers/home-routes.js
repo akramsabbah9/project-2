@@ -79,7 +79,8 @@ router.get("/article/:id", (req, res) => {
 router.get("/article/:id/history", (req, res) => {
     Revision.findAll({
         where: { article_id: req.params.id },
-        attributes: ["id", "changes", "user_id", "article_id", "created_at", "updated_at"]
+        attributes: ["id", "user_id", "created_at", "updated_at"],
+        order: [ ["created_at", "DESC"] ]
     })
     .then(revisionData => {
         // serialize data and render article-history
@@ -92,6 +93,13 @@ router.get("/article/:id/history", (req, res) => {
         res.status(500).json(err);
     });
 });
+
+
+// TODO: view a single revision of an article?
+// TODO: it would show the article as it was previously
+// router.get("/article/:id/history/view", (req, res) => {
+//     ;
+// });
 
 
 // route user to login page
