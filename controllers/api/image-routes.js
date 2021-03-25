@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Revision, Article, User, Image } = require('../../models');
+const { Article, User, Image } = require('../../models');
 
 router.get('/', (req, res) => {
     Image.findAll()

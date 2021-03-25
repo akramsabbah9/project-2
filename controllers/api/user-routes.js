@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const withAuth = require('../../utils/auth');
+
 const {
     User,
     Article,
@@ -117,20 +119,20 @@ router.post('/login', (req, res) => {
         }
 
         req.session.save(() => {
-            // declare session variables
-            req.session.user_id = userData.id;
-            req.session.username = userData.username;
-            req.session.loggedIn = true;
+                // declare session variables
+                req.session.user_id = userData.id;
+                req.session.username = userData.username;
+                req.session.loggedIn = true;
 
-            res.json({
-                user: userData,
-                message: 'Login successful'
+                res.json({
+                    user: userData,
+                    message: 'Login successful'
+                });
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json(err);
             });
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
     });
 });
 
@@ -147,7 +149,7 @@ router.post('/logout', (req, res) => {
 
 
 // update user
-router.put('/:id' /*, withAuth*/ , (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
     // input: { "username": "someUser", "email": "rimsy@catmail.com","password": "awesomePassword"}
 
     User.update(req.body, {
@@ -172,7 +174,7 @@ router.put('/:id' /*, withAuth*/ , (req, res) => {
 });
 
 // delete user by ID
-router.delete('/:id', /* withAuth,*/ (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
     User.destroy({
             where: {
                 id: req.params.id

@@ -1,17 +1,20 @@
+{{!--pass array of revisions for the article_id--}}
 <article class="single-article">
 	<div>
 
 			{{article.title}}
+			</br>
+			View article revisions
 
 		<p class="article-content">{{article.content}}</p>
 
 	</div>
 	<div class="meta">
 		</br>
-			posted by {{article.user.username}}
+			written by {{article.user.username}}
 		</br>
 
-		{{date_format article.created_at}}
+		{{format_date article.created_at}}
 		</br>
 
 		{{article.comments.length}} {{word_format "comment" comments.length}}
@@ -20,6 +23,6 @@
 	</div>
 </article>
 {{#if loggedIn}}
-{{>add-comment}}
+{{!--{{>add-comment}} - TODO--}} 
 {{/if}}
-{{>comment-content}}
+{{>comments}}
