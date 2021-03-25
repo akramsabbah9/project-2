@@ -1,10 +1,11 @@
 {{!--pass array of revisions for the article_id--}}
 <article class="single-article">
+
 	<div>
 
 			{{article.title}}
 			</br>
-			View article revisions
+			<a href="/article-history"></a>
 
 		<p class="article-content">{{article.content}}</p>
 
@@ -14,7 +15,8 @@
 			written by {{article.user.username}}
 		</br>
 
-		{{format_date article.created_at}}
+		{{format_date article.created_at}}, 
+		{{format_time article.created_at}}
 		</br>
 
 		{{article.comments.length}} {{word_format "comment" comments.length}}
@@ -23,6 +25,6 @@
 	</div>
 </article>
 {{#if loggedIn}}
-{{!--{{>add-comment}} - TODO--}} 
+{{!--{{>add-comments}} - TODO - Create add-comments partial--}} 
 {{/if}}
 {{>comments}}

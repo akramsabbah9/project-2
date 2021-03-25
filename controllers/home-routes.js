@@ -6,20 +6,19 @@ const { User, Article, Comment, Image, Revision } = require("../models");
 // front page: get article count and display it
 router.get("/", (req, res) => {
     sequelize.query(
-        "SELECT COUNT(*) AS `article_count` FROM article",
-        { type: QueryTypes.SELECT }
-    )
-    .then(counterData => {
-        res.json(counterData);
-        // serialize data and render homepage
-        // const count = counterData.get({ plain: true });
+            "SELECT COUNT(*) AS `article_count` FROM article", { type: QueryTypes.SELECT }
+        )
+        .then(counterData => {
+            res.json(counterData);
+            // serialize data and render homepage
+            // const count = counterData.get({ plain: true });
 
-        // res.render("homepage", { count, loggedIn: req.session.loggedIn });
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
+            // res.render("homepage", { count, loggedIn: req.session.loggedIn });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
 
@@ -27,52 +26,51 @@ router.get("/", (req, res) => {
 // TODO: instead of doing this by id, use the article name separated by underscores
 router.get("/article/:id", (req, res) => {
     Article.findOne({
-        where: { id: req.params.id },
-        attributes: [
-            "id", "title", "content", "created_at", "updated_at",
-            [
-                sequelize.literal(
-                    "(SELECT SUM(value) FROM vote WHERE article.id = vote.article_id)"
-                ),
-                "vote_count"
-            ]
-        ],
-        include: [
-            // all comments on this article
-            {
-                model: Comment,
-                attributes: ["id", "comment_text", "user_id", "article_id", "created_at"],
-                include: {
-                    model: User,
-                    attributes: ["username"]
+            where: { id: req.params.id },
+            attributes: [
+                "id", "title", "content", "created_at", "updated_at", [
+                    sequelize.literal(
+                        "(SELECT SUM(value) FROM vote WHERE article.id = vote.article_id)"
+                    ),
+                    "vote_count"
+                ]
+            ],
+            include: [
+                // all comments on this article
+                {
+                    model: Comment,
+                    attributes: ["id", "comment_text", "user_id", "article_id", "created_at"],
+                    include: {
+                        model: User,
+                        attributes: ["username"]
+                    }
+                },
+                // all images used by this article
+                {
+                    model: Image,
+                    attributes: ["id", "image_url"]
+                },
+                // all revisions to this article
+                {
+                    model: Revision,
+                    attributes: ["id", "changes"]
                 }
-            },
-            // all images used by this article
-            {
-                model: Image,
-                attributes: ["id", "image_url"]
-            },
-            // all revisions to this article
-            {
-                model: Revision,
-                attributes: ["id", "changes"]
+            ]
+        })
+        .then(articleData => {
+            if (!articleData) {
+                return res.status(404).json({ message: "No article found with this id" });
             }
-        ]
-    })
-    .then(articleData => {
-        if (!articleData) {
-            return res.status(404).json({ message: "No article found with this id" });
-        }
-        res.json(articleData);
-        // serialize data and render homepage
-        // const article = articleData.get({ plain: true });
+            res.json(articleData);
+            // serialize data and render homepage
+            // const article = articleData.get({ plain: true });
 
-        // res.render("single-article", { article, loggedIn: req.session.loggedIn });
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
+            // res.render("single-article", { article, loggedIn: req.session.loggedIn });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
 
@@ -83,6 +81,11 @@ router.get("/login", (req, res) => {
     }
 
     res.render("login");
+});
+
+router.get('/article-history', (req, res) => {
+
+    res.render('article-history');
 });
 
 module.exports = router;
