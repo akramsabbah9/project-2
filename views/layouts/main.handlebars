@@ -12,21 +12,21 @@
         <div class='hero'>
             <nav class="level">
             <p class="level-item has-text-centered">
-                <a class="link is-info">Home</a>
+                <a class="link is-info" href='/'>Home</a>
             </p>
             <p class="level-item has-text-centered">
-                <a class="link is-info">Search</a>
+                <a class="link is-info" href='#search'>Search</a>
             </p>
             <p class="level-item has-text-centered">
                 <img src="../../images/WikiPleiades.png" alt="" style="height: 30px;">
             </p>
             {{#if loggedIn}}
             <p class="level-item has-text-centered">
-                <a class="link is-info">Login</a>
+                <a id='logout' class="link is-info" href='/logout'>Logout</a>
             </p>
             {{#else}}
             <p class="level-item has-text-centered">
-                <a id='logout' class="link is-info">Logout</a>
+                <a class="link is-info" href='/login '>Login</a>
             </p>
             {{/if}}
             <p class='level-item has-text-centered'>
