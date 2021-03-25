@@ -7,14 +7,14 @@
   <div class="card-content">
     <div class="media">
       <div class="media-content">
-        <p class="title is-4">{{post.title}}</p>
+        <p class="title is-4">{{article.title}}</p>
       </div>
     </div>
 
     <div class="content" id='summary'>
       
       <br>
-      <time>{{created_at}}</time>
+      <time>{{format_date created_at}}, {{format_time created_at}}</time>
     </div>
   </div>
   <footer class="card-footer">
