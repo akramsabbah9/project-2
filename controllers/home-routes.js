@@ -64,7 +64,11 @@ router.get("/article/:id", (req, res) => {
             // all revisions to this article
             {
                 model: Revision,
-                attributes: ["id", "changes"]
+                attributes: ["id", "changes"],
+                include: {
+                    model: User,
+                    attributes: ["username"]
+                }
             }
         ]
     })
@@ -87,11 +91,48 @@ router.get("/article/:id", (req, res) => {
 
 // render the new-article page
 router.get("/article/:id/edit", (req, res) => {
-    // if (!req.session.loggedIn) { //TODO: remove when withAuth added
-    //     return res.redirect("/");
-    // }
+    Article.findOne({
+        where: { id: req.params.id },
+        attributes: [
+            "id", "title", "content", "created_at", "updated_at",
+            [
+                sequelize.literal(
+                    "(SELECT SUM(value) FROM vote WHERE article.id = vote.article_id)"
+                ),
+                "vote_count"
+            ]
+        ],
+        include: [
+            // all comments on this article
+            {
+                model: Comment,
+                attributes: ["id", "comment_text", "user_id", "article_id", "created_at"],
+                include: {
+                    model: User,
+                    attributes: ["username"]
+                }
+            },
+            // all images used by this article
+            {
+                model: Image,
+                attributes: ["id", "image_url"]
+            }
+        ]
+    })
+    .then(articleData => {
+        if (!articleData) {
+            return res.status(404).json({ message: "No article found with this id" });
+        }
+        //res.json(articleData);
+        // serialize data and render homepage
+        const article = articleData.get({ plain: true });
 
-    res.render("edit-article", { loggedIn: req.session.loggedIn });
+        res.render("edit-article", { article, loggedIn: req.session.loggedIn });
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
 });
 
 
