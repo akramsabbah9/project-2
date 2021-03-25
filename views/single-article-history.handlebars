@@ -4,7 +4,7 @@
 	<div>
 		{{revision.article.title}}
 {{!--revert button changes the article to this version--}}
-		<button data-id="{{revision.id}}">Revert</button>
+		<button data-id="{{revision.id}}" id="revision-history">Revert</button>
 		</br>
 		
 		<p class="article-content">{{revision.changes}}</p>
@@ -27,4 +27,4 @@
 {{/if}}
 {{>comments}}
 
-{{!--<script src="/javascript/history.js"></script>--}}
+<script src="/public/javascript/history.js"></script>

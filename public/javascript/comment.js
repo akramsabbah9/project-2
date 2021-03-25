@@ -1,3 +1,5 @@
+// handle comment submission by submitting POST request to backend api.
+
 const submitCommentHandler = async event => {
     event.preventDefault();
 
@@ -5,6 +7,7 @@ const submitCommentHandler = async event => {
     // get article_id from url
     const url = window.location.toString().split("/");
     const article_id = url[url.length - 1]; // TODO: change urls to article names?
+
 
     // get comment_text from document
     const comment_text; // = document.querySelector("textarea[name='comment-body']").value.trim();

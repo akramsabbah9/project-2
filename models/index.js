@@ -75,6 +75,9 @@ Image.belongsTo(User, {
 Revision.belongsTo(Article, {
     foreignKey: "article_id"
 });
+Revision.belongsTo(User, {
+    foreignKey: "user_id"
+});
 Revision.hasMany(Image, {
     foreignKey: "article_id"
 })
