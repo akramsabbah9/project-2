@@ -1,6 +1,7 @@
 /* routes for comments in backend api */
 const router = require("express").Router();
 const { Comment } = require("../../models");
+const withAuth = require("../../utils/auth.js");
 
 // get all comments
 router.get("/", (req, res) => {

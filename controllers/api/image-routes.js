@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Article, User, Image } = require('../../models');
+const withAuth = require("../../utils/auth.js");
 
 router.get('/', (req, res) => {
     Image.findAll()

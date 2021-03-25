@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const { Revision, Article, User } = require('../../models');
+const withAuth = require("../../utils/auth.js");
+
 
 router.get('/', (req, res) => {
     Revision.findAll()

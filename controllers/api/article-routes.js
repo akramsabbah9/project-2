@@ -1,6 +1,8 @@
 /* routes for articles in backend api */
 const router = require("express").Router();
 const sequelize = require("../../config/connection");
+const withAuth = require("../../utils/auth.js");
+
 const {
     User,
     Article,
