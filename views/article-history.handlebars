@@ -6,7 +6,7 @@
             <div class="card-header card-header-title is-flex is-justify-content-space-between">
                 <p>
                     Revision added by {{user.username}} on 
-                    {{format_date created_at}}, {{format_time created_at}}
+                    {{date_format created_at}}
                 </p>
                 <div>
                     <button data-id="{{id}}" class="button is-danger">Revert to this Revision</button>

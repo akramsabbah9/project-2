@@ -1,22 +1,15 @@
-// helper functions for handlebars
-const format_date = date => {
-    const newDate = new Date(date);
-    return `${newDate.getMonth() + 1}/${newDate.getDate()}/${newDate.getFullYear()}`;
-};
+var moment = require('moment');
+module.exports = {
+    date_format: date => {
+        return ` ${moment(date).format("llll").toString()}`;
+        // format a Date object into the preffered display format using moment.js
 
-const format_time = date => {
-    const newDate = new Date(date);
-    const hours = newDate.getHours();
-
-    return `${(hours + 11) % 12 + 1}:${newDate.getMinutes()} ${(hours < 12) ? "AM" : "PM"}`;
-};
-
-function word_format(word, amount) {
-    if (amount !== 1) {
-        return `${word}s`;
+    },
+    word_format: (word, amount) => {
+        if (amount !== 1) {
+            return `${word}s`;
+        }
+        return word;
+        // adapts a word to be plural or singular based on the quantity
     }
-    return word;
-    // adapts a word to be plural or singular based on the quantity
 }
-
-module.exports = { format_date, format_time, word_format };
