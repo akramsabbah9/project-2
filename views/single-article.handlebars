@@ -2,19 +2,24 @@
 	<div>
 		{{article.title}}
 		</br>
-		<a href="/article-history">History of Revisions</a>
+		{{!--TODO - write javascript button handler (see below)--}}
+		{{!-- when rev-btn is clicked, article-history-index will rend using the article's revisions by using the article_id--}}
+		<button class="rev-btn" data-id="{{article.id}}">
+			{{article.revisions.length}}
+			{{word_format "revision" article.revisions.length}}
+		</button>
 		<p class="article-content">{{article.content}}</p>
 	</div>
 	<div class="meta">
 		</br>
-		written by {{article.user.username}}
+		created by {{article.user.username}}
 		</br>
 
 		{{format_date article.created_at}},
 		{{format_time article.created_at}}
 		</br>
 
-		{{article.comments.length}} {{word_format "comment" comments.length}}
+		{{article.comments.length}} {{word_format "comment" article.comments.length}}
 		</br>
 	</div>
 </article>
@@ -22,3 +27,6 @@
 {{!--{{>add-comments}} - TODO - Create add-comments partial--}}
 {{/if}}
 {{>comments}}
+
+{{!--<script src="/javascript/revisionIndex.js"></script>--}}
+{{!--TODO - write revisionIndex.js in public/javascript--}}

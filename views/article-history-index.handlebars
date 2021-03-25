@@ -7,8 +7,8 @@
 		<ol class="revision-history-list">
 			{{#each}}
 			<li>
-				{{article.user.username}} - <a href="/revisions/{{article.revisions.id}}">{{format_date  article.revisions.created_at}}, {{format_time
-					 article.revisions.created_at}}</a>
+				{{article.user.username}} - <a href="/revisions/{{article.revision.id}}">{{format_date  article.revision.created_at}}, {{format_time
+					 article.revision.created_at}}</a>
 			</li>
 			{{/each}}
 		</ol>
