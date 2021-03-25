@@ -1,26 +1,25 @@
-<article class="post">
-	<div class="current-post">
-		<h2 class="view-post-title">
+<article class="single-article">
+	<div>
+
 			{{article.title}}
-		</h2></br>
-		</h2>
-		<p class="post-content">{{article.content}}</p>
+
+		<p class="article-content">{{article.content}}</p>
 
 	</div>
 	<div class="meta">
 		</br>
-		posted by {{article.user.username}}
+			posted by {{article.user.username}}
 		</br>
 
-		{{article.created_at}}{{!--TO-DO: helper - date_format--}}
+		{{date_format article.created_at}}
 		</br>
 
-		{{post.comments.length}} {{word_format "comment" comments.length}}
+		{{article.comments.length}} {{word_format "comment" comments.length}}
 		</br>
 
 	</div>
 </article>
 {{#if loggedIn}}
-{{!--{{>add comment partial}}--}}
+{{>add-comment}}
 {{/if}}
-{{!--{{>comment partial}}--}}
+{{>comment-content}}
