@@ -1,26 +1,26 @@
 async function deleteFormHandler(event) {
     event.preventDefault();
 
-    const id = window.location.toString().split('/')[
-        window.location.toString().split('/').length - 1
-    ];
+    const url = window.location.toString().split("/");
+    const id = url[url.length - 2];
 
-    const response = await fetch(`/api/articles/${id}`, {
-        method: 'DELETE',
-        body: JSON.stringify({
-            post_id: id
-        }),
-        headers: {
-            'Content-Type': 'application/json'
+    // prompt user to delete
+    const ans = confirm("Are you sure you wish to delete this article?");
+
+    if (ans) {
+        const response = await fetch(`/api/articles/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if(response.ok){
+            document.location.replace('/');
+        } else {
+            alert(response.statusText);
         }
-    });
-
-    if(response.ok){
-        document.location.replace('/');
-    } else {
-        alert(response.statusText);
     }
 }
 
-// not entirely sure what the ID for the delete button will be so here's a placeholder
-document.querySelector('.delete-article-btn').addEventListener('click', deleteFormHandler);
+document.querySelector('#delete-btn').addEventListener('click', deleteFormHandler);
