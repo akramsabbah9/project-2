@@ -52,11 +52,17 @@ router.get("/random", (req, res) => {
 router.get("/revision/:id", (req, res) => {
     Revision.findOne({
         where: { id: req.params.id },
-        attributes: ["id", "user_id", "created_at", "updated_at"],
-        include: {
-            model: User,
-            attributes: ["username"]
-        }
+        attributes: ["id", "changes", "user_id", "created_at", "updated_at"],
+        include: [
+            {
+                model: User,
+                attributes: ["username"]
+            },
+            {
+                model: Article,
+                attributes: ["title"]
+            }
+        ]
     })
     .then(revisionData => {
         if (!revisionData) {
@@ -64,6 +70,7 @@ router.get("/revision/:id", (req, res) => {
         }
         // serialize data and render homepage
         const revision = revisionData.get({ plain: true });
+        console.log(revision);
 
         res.render("single-article-history", { revision, loggedIn: req.session.loggedIn });
     })

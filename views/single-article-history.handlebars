@@ -1,23 +1,20 @@
-<div class="single-article-history">
-	<div>
-		{{revision.article.title}}
-{{!--revert button changes the article to this version--}}
-		<button data-id="{{revision.id}}" id="revision-history">Revert</button>
-		</br>
-		
-		<p class="article-content">{{revision.changes}}</p>
+<section class="single-article-history">
+	<h2 class="title">Viewing Revision for: {{revision.article.title}}</h2>
+	<h3 class="subtitle">
+		created by {{revision.user.username}} on {{date_format revision.created_at}}
+	</h3>
+	<div class="card card-content">
+		<p>{{revision.changes}}</p>
 	</div>
-	<div class="meta">
-		</br>
-		created by {{revision.article.user.username}}
-		</br>
 
-		{{date_format revision.created_at}}
-		</br>
-
-		{{revision.article.comments.length}} {{word_format "comment" revision.comments.length}}
-		</br>
+	<br />
+	
+	<div class="is-flex is-justify-content-flex-end">
+		<div class="is-justify-content-space-between">
+		<button data-id="{{id}}" class="button is-danger">Revert to this Revision</button>
+        <a href="/revision/{{id}}"><button class="button is-warning">View this Revision</button></a>
+		</div>
 	</div>
-</div>
+</section>
 
 <script src="/public/javascript/history.js"></script>
