@@ -11,10 +11,11 @@
 	
 	<div class="is-flex is-justify-content-flex-end">
 		<div class="is-justify-content-space-between">
-		<button data-id="{{id}}" class="button is-danger">Revert to this Revision</button>
-        <a href="/revision/{{id}}"><button class="button is-warning">View this Revision</button></a>
+			<button id="revise" data-id="{{revision.id}}" class="button is-danger">Revert to this Revision</button>
+			<a href="/article/{{revision.article.id}}/history"><button class="button is-light">Go Back</button></a>
 		</div>
 	</div>
 </section>
 
-<script src="/public/javascript/history.js"></script>
+<script src="/javascript/revert.js"></script>
+<script src="/javascript/single-history.js"></script>

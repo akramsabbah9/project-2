@@ -60,7 +60,7 @@ router.get("/revision/:id", (req, res) => {
             },
             {
                 model: Article,
-                attributes: ["title"]
+                attributes: ["id", "title"]
             }
         ]
     })
