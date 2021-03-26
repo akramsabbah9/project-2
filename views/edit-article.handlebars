@@ -1,21 +1,31 @@
-<div class='card'>
-    <div class='card-content'>
-        <p class='title'>{{article.title}}</p>
-    </div>
-    <div class='field'>
-        <label class='label'>Article Content</label>
-        <div class='control'>
-            <textarea class='textarea is-large'>{{article.content}}</textarea>
+<form class="box">
+    <div class='card'>
+        <div class='card-content'>
+            <p class='title'>{{article.title}}</p>
+            <div class='field'>
+                <label class='label'>Article Content</label>
+                <div class='control'>
+                    <textarea class='textarea' rows="15">{{article.content}}</textarea>
+                </div>
+            </div>
+            {{!-- <div class='field'>
+                <label class='label'>Sources</label>
+                <div class='control'>
+                    <textarea class='textarea is-small'>{{article.source}}</textarea>
+                </div>
+            </div> --}}
+            <div class="is-flex is-justify-content-flex-end">
+            <div class='control'>
+                <button id="update" class="button is-success" type='submit'>Submit</button>
+            </div>
+            <div class='control'>
+                <a href="/article/{{article.id}}" class="button is-light">Cancel</a>
+            </div>
+            <div class='control'>
+                <button id="delete" class="button is-danger">Delete This Article</button>
+            </div>
+            </div>
         </div>
     </div>
-    <div class='field'>
-        <label class='label'>Sources</label>
-        <div class='control'>
-            <textarea class='textarea is-small'>{{article.source}}</textarea>
-        </div>
-    </div>
-    <div class='control'>
-        <button type='submit'>Submit</button>
-    </div>
-</div>
+</form>
 {{!--TODO - link to script--}}
