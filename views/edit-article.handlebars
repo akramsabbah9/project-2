@@ -1,11 +1,11 @@
-<form class="box">
+<form id="update-form" class="box">
     <div class='card'>
         <div class='card-content'>
             <p class='title'>{{article.title}}</p>
             <div class='field'>
-                <label class='label'>Article Content</label>
+                <label class='label' for="content">Article Content</label>
                 <div class='control'>
-                    <textarea class='textarea' rows="15">{{article.content}}</textarea>
+                    <textarea class='textarea' name="content" rows="15">{{article.content}}</textarea>
                 </div>
             </div>
 
@@ -19,4 +19,5 @@
         </div>
     </div>
 </form>
+<script src="/javascript/edit-article.js"></script>
 <script src="/javascript/delete-article.js"></script>
