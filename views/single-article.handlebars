@@ -19,6 +19,11 @@
 	</div>
 </article>
 {{#if loggedIn}}
-{{!--{{>add-comments}} - TODO - Create add-comments partial--}}
+<div class='field' id='new-comment-form'>
+	<label for='comment'>Add a comment:</label>
+	<div class='control'>
+		<textarea class='textarea is-small' id='new-comment' placeholder='Go for CAPCOM'></textarea>
+	</div>
+</div>
 {{/if}}
 {{>comments article.comments}}
