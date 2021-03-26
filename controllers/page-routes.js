@@ -2,12 +2,10 @@ const router = require("express").Router();
 const { QueryTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 const { User, Article, Comment, Image, Revision } = require("../models");
+const withAuth = require("../utils/auth");
 
 // render the new-article page
-router.get("/create", (req, res) => {
-    // if (!req.session.loggedIn) { //TODO: remove when withAuth added
-    //     return res.redirect("/");
-    // }
+router.get("/create", withAuth, (req, res) => {
 
     res.render("new-article", { loggedIn: req.session.loggedIn });
 });
@@ -51,7 +49,7 @@ router.get("/:id", (req, res) => {
             if (!articleData) {
                 return res.status(404).json({ message: "No article found with this id" });
             }
-            // serialize data and render homepage
+            // serialize data and render single-article
             const article = articleData.get({ plain: true });
 
             res.render("single-article", { article, loggedIn: req.session.loggedIn });
@@ -96,7 +94,7 @@ router.get("/:id/edit", (req, res) => {
             if (!articleData) {
                 return res.status(404).json({ message: "No article found with this id" });
             }
-            // serialize data and render homepage
+            // serialize data and render edit-article
             const article = articleData.get({ plain: true });
 
             res.render("edit-article", { article, loggedIn: req.session.loggedIn });
@@ -126,35 +124,6 @@ router.get("/:id/history", (req, res) => {
             const history = revisionData.map(revision => revision.get({ plain: true }));
 
             res.render("article-history", { history, loggedIn: req.session.loggedIn });
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-});
-
-// render a single revision from an article's revision history
-router.get("/:article_id/history/:rev_id", (req, res) => {
-    Revision.findOne({
-            where: {
-                id: req.params.rev_id,
-                article_id: req.params.article_id
-            },
-            attributes: ["id", "user_id", "created_at", "updated_at"],
-            order: [
-                ["created_at", "DESC"]
-            ],
-            include: {
-                model: User,
-                attributes: ["username"]
-            }
-        })
-        .then(revisionData => {
-            res.json(revisionData);
-            // serialize data and render article-history
-            // const history = revisionData.map(revision => revision.get({ plain: true }));
-
-            // res.render("article-history", { history, loggedIn: req.session.loggedIn });
         })
         .catch(err => {
             console.log(err);

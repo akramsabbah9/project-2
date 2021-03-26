@@ -1,6 +1,4 @@
-
-
-<article class="single-article-history">
+<div class="single-article-history">
 	<div>
 		{{revision.article.title}}
 {{!--revert button changes the article to this version--}}
@@ -14,14 +12,12 @@
 		created by {{revision.article.user.username}}
 		</br>
 
-		{{format_date revision.created_at}},
-		{{format_time revision.created_at}}
+		{{date_format revision.created_at}}
 		</br>
 
 		{{revision.article.comments.length}} {{word_format "comment" revision.comments.length}}
 		</br>
 	</div>
-</article>
-{{>comments}}
+</div>
 
 <script src="/public/javascript/history.js"></script>

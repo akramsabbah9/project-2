@@ -48,6 +48,32 @@ router.get("/random", (req, res) => {
 });
 
 
+// render a single revision
+router.get("/revision/:id", (req, res) => {
+    Revision.findOne({
+        where: { id: req.params.id },
+        attributes: ["id", "user_id", "created_at", "updated_at"],
+        include: {
+            model: User,
+            attributes: ["username"]
+        }
+    })
+    .then(revisionData => {
+        if (!revisionData) {
+            return res.status(404).json({ message: "No article found with this id" });
+        }
+        // serialize data and render homepage
+        const revision = revisionData.get({ plain: true });
+
+        res.render("single-article-history", { revision, loggedIn: req.session.loggedIn });
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
+
 // route user to login page
 router.get("/login", (req, res) => {
     if (req.session.loggedIn) {
