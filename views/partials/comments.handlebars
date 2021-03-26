@@ -1,15 +1,14 @@
-{{!-- pass in an array of Comments, which has been JOINed with Users that posted --}}
 <div id="comments">
     {{#each this}}
-    <article class="card">
+    <article class="card comment-card">
         <div class="card-header card-header-title is-flex is-justify-content-space-between">
             <p>{{user.username}}</p>
             <span>{{date_format created_at}}</span>
         </div>
-        <div class="card-content">
+        <div class="card-content comment" >
             {{comment_text}}
         </div>
     </article>
-    <br />
+    <br/>
     {{/each}}
 </div>

@@ -18,13 +18,21 @@
 		</br>
 	</div>
 </article>
-
-{{#if loggedIn}}
-<div class='field' id='new-comment-form'>
-	<label for='comment'>Add a comment:</label>
-	<div class='control'>
-		<textarea class='textarea is-small' id='new-comment' placeholder='Go for CAPCOM'></textarea>
-	</div>
+<div class="container comment-section">
+	{{#if loggedIn}}
+	<article class="card">
+		<div class="card-header card-header-title is-flex is-justify-content-space-between">
+			<form class="comment-form" id="comment-form">
+				<div class='control'>
+					<textarea name="comment-body" class='textarea is-medium' placeholder='Go for CAPCOM'></textarea>
+				</div>
+				<div>
+					<button type="submit" class="btn">add comment</button>
+				</div>
+			</form>
+		</div>
+	</article>
+	<script src="/javascript/add-comment.js"></script>
+	{{/if}}
 </div>
-{{/if}}
 {{>comments article.comments}}
