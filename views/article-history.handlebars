@@ -10,11 +10,12 @@
                 </p>
                 <div>
                     <button data-id="{{id}}" class="button is-danger">Revert to this Revision</button>
-                    {{!-- <button class="button is-warning">View this Revision</button> --}}
+                    <button data-link="{{id}}" class="button is-warning">View this Revision</button>
                 </div>
             </div>
         </li>
         {{/each}}
     </ul>
 </div>
+<script src="/javascript/revert.js"></script>
 <script src="/javascript/history.js"></script>

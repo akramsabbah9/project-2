@@ -1,14 +1,6 @@
-// when the revert button in an article's history page is clicked,
-// then update the article with that past revision
+// when the revert button is clicked, then update the article with that past revision
 const revisionButtonHandler = async event => {
     event.preventDefault();
-
-    // if the view button was clicked, go to its corresponding link
-    let data_link = event.target.getAttribute("data-link");
-    if (data_link) {
-        window.location.href = `/revision/${data_link}`;
-        return;
-    }
 
     // if the revert button was clicked, grab its data id, otherwise return
     let rev_id = event.target.getAttribute("data-id");
@@ -31,4 +23,4 @@ const revisionButtonHandler = async event => {
     }
 };
 
-document.querySelector("#revision-history").addEventListener("click", revisionButtonHandler);
+document.querySelector("#revise").addEventListener("click", revisionButtonHandler);

@@ -23,18 +23,25 @@
                                 <div class='field'>
                                     <label class='label'>Password</label>
                                     <div class='control has-icons-left'>
-                                        <input class='input' type='text' id='password-login' placeholder='Password'>
+                                        <input class='input' type='password' id='password-login' placeholder='Password'>
                                         <span class='icon is-left'>
                                             <i class='fas fa-lock'></i>
                                         </span>
                                     </div>
                                 </div>
                                 <footer class='card-footer'>
-                                    <p class='card-footer-item'>
-                                        <button type='submit'>
-                                            Login
-                                        </button>
-                                    </p>
+                                    <div class='field is-grouped'>
+                                        <div class='control'>
+                                            <button id="login-submit" class='button is-link' type='submit'>
+                                                Login
+                                            </button>
+                                        </div>
+                                        <div class='control'>
+                                            <a href="/signup" class='button is-link'>
+                                                Signup Instead
+                                            </a>
+                                        </div>
+                                    </footer>
                                 </footer>
                             </div>
                         </div>
@@ -42,18 +49,17 @@
                     <div class = "hero-foot is-info">
                         <nav class = "tabs">
                             <div class = "container">
-                                <ul>
-                                    <li><a href='/signup'>Signup instead</a></li>
-                                    <li><a href='/homepage'>Home</a></li>
-                                </ul>
+                                <butto
                             </div>
                         </nav>
                     </div>
             </div>
                 <div class='column'>
-                    <figure class="image is-6by3 armstrong">
-                        <img src="/images/bowie_quote.png">
-                    </figure>
+                    <div class='box'>
+                        <figure class="image is-6by3 armstrong">
+                            <img src="/images/bowie_quote.png">
+                        </figure>
+                    </div>
                 </div>
         </div>
     </div>
