@@ -3,7 +3,7 @@ const { QueryTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 const { User, Article, Comment, Image, Revision } = require("../models");
 
-// TODO - Add Logout Route
+
 
 // front page: get article count and display it
 router.get("/", (req, res) => {
@@ -190,7 +190,7 @@ router.get("/login", (req, res) => {
     res.render("login");
 });
 
-// route user to login page
+// route user to signup page
 router.get("/signup", (req, res) => {
     if (req.session.loggedIn) {
         return res.redirect("/");
@@ -198,5 +198,6 @@ router.get("/signup", (req, res) => {
 
     res.render("signup");
 });
+
 
 module.exports = router;
