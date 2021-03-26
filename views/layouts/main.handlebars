@@ -6,36 +6,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WikiPleiades</title>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.2/css/bulma.min.css'>
+    <link rel='stylesheet' href='css/style.css'>
 </head>
 
 <body>
     <div class='container'>
         <div class='hero'>
             <nav class="level">
-                <p class="level-item has-text-centered">
-                    <a class="link is-info" href='/'>Home</a>
-                </p>
-                <p class="level-item has-text-centered">
-                    <a class="link is-info" href='#search'>Search</a>
-                </p>
-                <p class="level-item has-text-centered">
-                    <img src="/images/WikiPleiades_invert.png" alt="" style="height: 30px;">
-                </p>
-                {{#if loggedIn}}
-                <p class="level-item has-text-centered">
-                    <a id='logout' class="link is-info" href='/logout'>Logout</a>
-                </p>
-                {{else}}
-                <p class="level-item has-text-centered">
-                    <a class="link is-info" href='/login '>Login</a>
-                </p>
-                {{/if}}
-                <p class='level-item has-text-centered'>
-                    <a class='link is-info'>Random</a>
-                </p>
+            <p class="level-item has-text-centered">
+                <a class="link is-info" href='/'>Home</a>
+            </p>
+            {{#if loggedIn}}
+            <p class='level-item has-text-centered'>
+                <a class='link is-info' href='/article/create'>New Article</a>
+            </p>
+            {{else}}
+            <p class="level-item has-text-centered">
+                <a class="link is-info" href='/#search'>Search</a>
+            </p>
+            {{/if}}
+            <p class="level-item has-text-centered">
+                <img src="/images/WikiPleiades_invert.png" alt="" style="height: 50px;">
+            </p>
+            {{#if loggedIn}}
+            <p class="level-item has-text-centered">
+                <a id='logout' class="link is-info" href='/logout'>Logout</a>
+            </p>
+            {{else}}
+            <p class="level-item has-text-centered">
+                <a class="link is-info" href='/login '>Login</a>
+            </p>
+            {{/if}}
+            <p class='level-item has-text-centered'>
+                <a class='link is-info'>Random</a>
+            </p>
             </nav>
         </div>
         <main>
+            <section class='columns'>
+                <div class='column is-full'>
+                    <h1 class='title'>WikiPleiades</h1>
+
+                    <h2 class='subtitle'>Gateway to the Stars</h2>
+                </div>
+            </section>
             {{{body}}}
         </main>
     </div>
