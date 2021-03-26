@@ -172,6 +172,17 @@ router.put('/:id', withAuth, (req, res) => {
             res.status(500).json(err);
         });
 });
+// user log out route
+router.post('/logout', (req, res) => {
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+            res.status(204).end();
+        });
+    } else {
+        res.status(404).end();
+    }
+});
+
 
 // delete user by ID
 router.delete('/:id', withAuth, (req, res) => {
