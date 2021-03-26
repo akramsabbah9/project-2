@@ -1,37 +1,40 @@
-<div class='card new-article-form'>
-    <div class='card content login'>
-        <p class='title'>
-            New Article
-        </p>
-        <p class='subtitle'>
-            Your own Pillars of Creation
-        </p>
-        <div class='field'>
-            <label for='article-title' class='label'>Article Title</label>
-            <div class='control'>
-                <input class='input' type='text' id='article-title' name='article-title' placeholder='To Infinity, and Beyond'>
+<form class="box new-article-form">
+    <div class='card'>
+        <div class='card content login'>
+            <p class='title'>
+                New Article
+            </p>
+            <p class='subtitle'>
+                Your own Pillars of Creation
+            </p>
+            <div class='field'>
+                <label for='article-title' class='label'>Article Title</label>
+                <div class='control'>
+                    <input class='input' type='text' id='article-title' name='article-title' placeholder='To Infinity, and Beyond'>
+                </div>
             </div>
-        </div>
-        <div class='field'>
-            <label for='article-content' class='label'>Article Info</label>
-            <div class='control'>
-                <textarea class='textarea is-large' id='article-content' placeholder='Include as much information as you can. Be sure to include basics like which type of celestial body, mass, and if applicable which constellations in which it can be found. Citations are also appreciated.'></textarea>
+            <div class='field'>
+                <label for='article-content' class='label'>Article Info</label>
+                <div class='control'>
+                    <textarea class='textarea is-large' id='article-content' name='article-content' placeholder='Include as much information as you can. Be sure to include basics like which type of celestial body, mass, and if applicable which constellations in which it can be found. Citations are also appreciated.'></textarea>
+                </div>
             </div>
-        </div>
-        <div class='field'>
-            <label for='sources' class='label'>Sources</label>
-            <div class='control'>
-                <textarea id='sources' class='textarea is-small' placeholder='Please include any cited sources'></textarea>
+            <div class='field'>
+                <label for='sources' class='label'>Sources</label>
+                <div class='control'>
+                    <textarea id='sources' class='textarea is-small' placeholder='Please include any cited sources'></textarea>
+                </div>
             </div>
-        </div>
-        <div class='field'>
-            <label class='label'>Image</label>
-            <div class='control'>
-                <input class='input' type='text' placeholder='Please include a related image URL.'>
+            <div class='field'>
+                <label class='label'>Image</label>
+                <div class='control'>
+                    <input class='input' type='text' placeholder='Please include a related image URL.'>
+                </div>
             </div>
-        </div>
-        <div class='control'>
-            <button type='submit'>Submit</button>
+            <div class='control'>
+                <button type='submit'>Submit</button>
+            </div>
         </div>
     </div>
-</div>
+</form>
+<script src="/javascript/add-article.js"></script>
