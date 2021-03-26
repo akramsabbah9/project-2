@@ -180,6 +180,10 @@ router.get("/article/:id/history", (req, res) => {
         });
 });
 
+router.get('/search', (req, res) => {
+    res.render('search');
+});
+
 
 // route user to login page
 router.get("/login", (req, res) => {
