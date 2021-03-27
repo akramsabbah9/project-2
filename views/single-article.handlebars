@@ -1,23 +1,29 @@
 <article class="single-article">
-	<div>
-		{{article.title}}
-		</br>
-		<a href="/article/{{article.id}}/history">{{article.revisions.length}}
-			{{word_format "Revision" article.revisions.length}}</a>
-		 | <a href="/article/{{article.id}}/edit">Edit</a>
+	<div class="card" style="color: black;">
+		<div class="card-header card-header-title is-flex is-justify-content-space-between"
+			style="background-color: rgb(228, 228, 228); font-size: 1.6rem; padding: 20px; font-weight: bold;">
+			{{article.title}}
+			<span style="font-size: 1rem;">{{date_format article.created_at}}</span>
 
-		<p class="article-content">{{article.content}}</p>
-	</div>
-	<div class="meta">
-
-
-		{{date_format article.created_at}}
-		</br>
-
-		{{article.comments.length}} {{word_format "comment" article.comments.length}}
-		</br>
+		</div>
+		<div class="card-content">
+			<div style="margin-bottom: 20px;">
+				<a href="/article/{{article.id}}/history">{{article.revisions.length}}
+					{{word_format "Revision" article.revisions.length}}</a>
+				| <a href="/article/{{article.id}}/edit">Edit</a>
+			</div>
+			<p class="article-content">
+				{{article.content}}
+			</p>
+		</div>
 	</div>
 </article>
+<div>
+	</br>
+	{{article.comments.length}} {{word_format "comment" article.comments.length}}
+	</br>
+	{{>comments article.comments}}
+</div>
 <div class="container comment-section">
 	{{#if loggedIn}}
 	<div class="card">
@@ -33,4 +39,3 @@
 	<script src="/javascript/add-comment.js"></script>
 	{{/if}}
 </div>
-{{>comments article.comments}}
