@@ -6,14 +6,10 @@ async function newFormHandler(event) {
     const imgUrl = document.querySelector("input[name='img-url']").value;
 
     // error checking: if title/content is null, stop the user from continuing.
-    if (!title) {
-        alert("You cannot leave the title of this article blank!");
-        return;
-    }
-    if (!article_content) {
-        alert("You cannot leave the content of this article blank!");
-        return;
-    }
+    if (!title)
+        return alert("You cannot leave the title of this article blank!");
+    if (!article_content)
+        return alert("You cannot leave the content of this article blank!");
 
     const response = await fetch(`/api/articles`, {
         method: 'POST',
@@ -30,6 +26,7 @@ async function newFormHandler(event) {
         const newArticle = await response.json();
         const newArticleId = newArticle.article_id;
 
+        // post image to the database if one was added.
         if (imgUrl) {
             const imagefetch = await fetch(`/api/images`, {
                 method: 'POST',
@@ -41,10 +38,7 @@ async function newFormHandler(event) {
                     'Content-Type': 'application/json'
                 }
             });
-            if (!imagefetch.ok) {
-                alert("The image you used could not be added.");
-                alert("response.statusT")
-            }
+            if (!imagefetch.ok) alert("The image you used could not be added.");
         }
         
         document.location.replace(`/article/${newArticleId}`);
