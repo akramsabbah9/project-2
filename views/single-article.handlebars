@@ -1,37 +1,39 @@
 <article class="single-article">
-	<div class="card" style="color: black;">
-		<div class="card-header card-header-title is-flex is-justify-content-space-between"
-			style="background-color: rgb(228, 228, 228); font-size: 1.6rem; padding: 20px; font-weight: bold;">
+	<div class="card has-text-black">
+		<div
+			class="card-header card-header-title is-flex is-justify-content-space-between p-3 has-background-grey-lighter is-size-4">
 			{{article.title}}
-			<span style="font-size: 1rem;">{{date_format article.created_at}}</span>
-
+			<span class="is-size-6">{{date_format article.created_at}}</span>
 		</div>
 		<div class="card-content">
-			<div style="margin-bottom: 20px;">
+			<div class="mb-2">
 				<a href="/article/{{article.id}}/history">{{article.revisions.length}}
 					{{word_format "Revision" article.revisions.length}}</a>
 				| <a href="/article/{{article.id}}/edit">Edit</a>
 			</div>
 			<p class="article-content">
+				{{#if article.images}}
+				{{>images article.images}}
+				{{/if}}
 				{{article.content}}
 			</p>
 		</div>
 	</div>
 </article>
-<div>
+<div class="m-1">
 	</br>
 	{{article.comments.length}} {{word_format "comment" article.comments.length}}
 	</br>
 	{{>comments article.comments}}
 </div>
-<div class="container comment-section">
+<div class="container my-2 mx-0">
 	{{#if loggedIn}}
 	<div class="card">
 		<div class="card-content">
 			<form class="comment-form" id="comment-form" class="is-fullhd">
 				<textarea name="comment-body" class='textarea is-small' placeholder='Go for CAPCOM'></textarea>
 				<div class="is-flex is-justify-content-flex-end">
-					<button type="submit" class="button is-link" style="margin: 15px;">add comment</button>
+					<button type="submit" class="button is-link mt-2">add comment</button>
 				</div>
 			</form>
 		</div>

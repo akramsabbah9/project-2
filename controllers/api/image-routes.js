@@ -37,7 +37,7 @@ router.post('/', withAuth, (req, res) => {
     // input: {"image_url": "https://myimage.com","user_id": 1, "article_id": 2}
     Image.create({
             image_url: req.body.image_url,
-            user_id: req.body.user_id,
+            user_id: req.session.user_id,
             article_id: req.body.article_id
         })
         .then(imageData => res.json(imageData))

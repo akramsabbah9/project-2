@@ -5,7 +5,7 @@ async function commentFormHandler(event) {
 
     const article_id = window.location.toString().split('/')[
         window.location.toString().split('/').length - 1
-    ];
+    ]; // TODO: change urls to article names?
 
     if (comment_text) {
         const response = await fetch('/api/comments', {
