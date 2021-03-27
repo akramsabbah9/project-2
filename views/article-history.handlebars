@@ -3,14 +3,14 @@
     <ul id="revision-history">
         {{#each history}}
         <li class="card">
-            <div class="card-header card-header-title is-flex is-justify-content-space-between">
+            <div class="card-header card-header-title is-flex is-justify-content-space-between p-2 m-2">
                 <p>
                     Revision added by {{user.username}} on 
                     {{date_format created_at}}
                 </p>
                 <div>
-                    <button data-id="{{id}}" class="button is-danger">Revert to this Revision</button>
-                    <button data-link="{{id}}" class="button is-warning">View this Revision</button>
+                    <button data-id="{{id}}" class="button is-danger m-2">Revert to this Revision</button>
+                    <button data-link="{{id}}" class="button is-warning m-2">View this Revision</button>
                 </div>
             </div>
         </li>
