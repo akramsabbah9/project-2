@@ -1,9 +1,9 @@
-let searchTerm = document.querySelector('input[name="search-bar"]').value;
-searchTerm = `*${searchTerm}*`;
-
-
 async function searchFormHandler(event) {
     event.preventDefault();
+    
+    let searchTerm = document.querySelector('input[name="search-bar"]').value;
+    searchTerm = `*${searchTerm}*`;
+
     const response = await fetch(`/api/articles/`, {
         method: 'GET',
         headers: {
