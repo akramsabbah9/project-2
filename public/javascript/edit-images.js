@@ -1,5 +1,6 @@
 let images = document.querySelector("#article-images");
 
+// add a new image to the article
 const addNewImage = async event => {
     event.preventDefault();
 
@@ -26,9 +27,9 @@ const addNewImage = async event => {
         if (response.ok) {
             const newImage = await response.json();
             images.insertAdjacentHTML("beforeend", `
-                <div class="columns">
+                <div data-id="${newImage.id}" class="columns">
                     <div class="column">
-                        <input class='input' data-id="${newImage.id}" value="${newImage.image_url}" disabled>
+                        <input class='input' value="${newImage.image_url}" disabled>
                     </div>
                     <div class="column is-2 is-flex is-justify-content-flex-end">
                         <div class="is-grouped">
@@ -39,8 +40,39 @@ const addNewImage = async event => {
                 </div>
             `);
         }
+        else {
+            alert(response.statusText);
+        }
     }
 };
 
-images.addEventListener('submit', updateFormHandler);
+
+// edit or delete an article's image
+const updateImage = async event => {
+    event.preventDefault();
+
+    // check if delete button was pressed, run delete button
+    if (event.target.classList.contains("is-danger")) {
+        deleteImage(event.target);
+    }
+};
+
+
+// delete image from database, then delete it from DOM
+const deleteImage = async target => {
+    let container = target.closest(".columns");
+    let targetId = container.getAttribute("data-id");
+    
+    const response = await fetch(`/api/images/${targetId}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+
+    if (response.ok) container.remove();
+    else alert(response.statusText);
+};
+
 document.querySelector("#add-img-btn").addEventListener("click", addNewImage);
+images.addEventListener("click", updateImage);

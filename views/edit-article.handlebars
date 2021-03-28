@@ -12,10 +12,10 @@
                 <label class='label'>Article Images</label>
                 <div id="article-images" class='control'>
                     {{#each article.images as |image|}}
-                    <div class="columns">
+                    <div data-id="{{image.id}}" class="columns">
                         {{!-- url --}}
                         <div class="column">
-                            <input class='input' data-id="{{image.id}}" value="{{image.image_url}}" disabled>
+                            <input class='input' value="{{image.image_url}}" disabled>
                         </div>
                         {{!-- buttons --}}
                         <div class="column is-2 is-flex is-justify-content-flex-end">
