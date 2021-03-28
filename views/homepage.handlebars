@@ -1,18 +1,20 @@
-
-<div class="field has-addons" id='search-bar'>
-  <div class="control">
-    <input class="input" type="text" placeholder="To the stars...">
+<form id="search-form">
+  <div class="field has-addons" id='search-bar'>
+    <div class="control">
+      <input class="input" name="search-bar" type="text" placeholder="To the stars...">
+    </div>
+    <div class="control" id='search'>
+      <a class="button is-link">
+        Search
+      </a>
+    </div>
   </div>
-  <div class="control" id='search'>
-    <a class="button is-link">
-      Search
-    </a>
-  </div>
-</div>
+</form>
 <div class='section'>
-<div class="content has-text-centered">
+  <div class="content has-text-centered">
     <p>
-    <strong>WikiPleiades</strong> is <span>{{count}}</span> articles strong.
+      <strong>WikiPleiades</strong> is <span>{{count}}</span> articles strong.
     </p>
+  </div>
 </div>
-</div>
+<script src="/javascript/search.js"></script>
