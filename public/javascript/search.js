@@ -1,9 +1,13 @@
   async function searchFormHandler(event) {
       event.preventDefault();
+      let searched = document.querySelector('input[name="search-bar"]').value;
 
-      let searchTerm = document.querySelector('input[name="search-bar"]').value;
+      window.location.href = `/search/${searched}`;
+  }
+
+
+  /* async function getSearch(searchTerm) {
       searchTerm = `*${searchTerm}*`;
-
       const response = await fetch(`/api/articles/`, {
           method: 'GET',
           headers: {
@@ -24,19 +28,20 @@
 
           function searchArticles(index, query, articlesArray) {
               const output = index.search(query);
-              console.log(output);
               let ret = articlesArray.filter(article => output.find(item => parseInt(item.ref) === article.id));
               return ret;
           }
 
           const result = searchArticles(idx, searchTerm, articles)
           console.log(result);
-          console.log(articles);
+
+          return result;
+
       } else {
           alert(response.statusText);
       }
   }
-
+*/
 
 
   document.querySelector('#search-form').addEventListener('submit', searchFormHandler);
