@@ -118,7 +118,9 @@ router.post("/", withAuth, (req, res) => {
         })
         .then(articleData => {
             // grab id from response data
-            const article = articleData.get({ plain: true });
+            const article = articleData.get({
+                plain: true
+            });
             const article_id = article.id;
 
             // if create successful, make a revision with this information
@@ -139,7 +141,16 @@ router.post("/", withAuth, (req, res) => {
 // (put) vote on an article by id
 router.put("/vote", withAuth, checkVote, (req, res) => {
     // expects { value, user_id, article_id } in req.body
-    Article.vote({...req.body, user_id: req.session.user_id }, { Vote, Comment, User, Image, Revision })
+    Article.vote({
+            ...req.body,
+            user_id: req.session.user_id
+        }, {
+            Vote,
+            Comment,
+            User,
+            Image,
+            Revision
+        })
         .then(articleData => res.json(articleData))
         .catch(err => {
             console.log(err);
