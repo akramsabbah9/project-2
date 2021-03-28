@@ -47,6 +47,31 @@ router.post('/', withAuth, (req, res) => {
         });
 });
 
+router.put("/:id", withAuth, (req, res) => {
+    Image.update(
+        {
+            image_url: req.body.image_url,
+            user_id: req.session.user_id
+        },
+        {
+            where: { id: req.params.id }
+        }
+    )
+    .then(imageData => {
+        if (!imageData[0]) {
+            res.status(404).json({
+                message: 'No image found with that id'
+            });
+            return;
+        }
+        res.json(imageData);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
 router.delete('/:id', withAuth, (req, res) => {
     Image.destroy({
             where: {
