@@ -6,17 +6,17 @@
 <section>
 	<ol>
 
-		{{#each this}}
-		<li></li>
-		{{!-- {{#if articles.length}}--}}
-		<article class="card comment-card">
-			<div
-				class="card-header card-header-title is-flex is-justify-content-space-between has-background-grey-lighter">
-				<p>{{article.title}}</p>
-				{{!--<span>{{date_format created_at}}</span>--}}
-			</div>
-			</li>
-			<br />
+		{{#each result as |article|}}
+		<li>
+			{{!-- {{#if articles.length}}--}}
+			<article class="card comment-card">
+				<div class="card-header card-header-title is-flex is-justify-content-space-between has-background-grey-lighter">
+					<p>{{article.title}}</p>
+					<span>{{date_format created_at}}</span>
+					</div>
+				</div>
+		</li>
+		<br />
 		</article>
 		{{/each}}
 	</ol>

@@ -45,7 +45,10 @@ router.get("/search/:searchTerm", (req, res) => {
                     message: "No articles Found"
                 });
             }
-            const articles = searchData;
+
+            let articles = searchData.map(article => article.get({
+                plain: true
+            }));
             const idx = lunr(function() {
                 this.field("title");
                 this.field("content");
@@ -54,7 +57,6 @@ router.get("/search/:searchTerm", (req, res) => {
                     this.add(articles[i])
                 }
             });
-
 
             function searchArticles(index, query, artArray) {
                 const output = index.search(query);
