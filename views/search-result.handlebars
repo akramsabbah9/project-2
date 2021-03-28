@@ -3,28 +3,30 @@
 		Search Results:
 	</h1>
 </article>
-{{!--{{#if articles.length}}
---}}
 <section>
 	<ol>
+
 		{{#each this}}
+		<li></li>
+		{{!-- {{#if articles.length}}--}}
 		<article class="card comment-card">
 			<div
 				class="card-header card-header-title is-flex is-justify-content-space-between has-background-grey-lighter">
 				<p>{{article.title}}</p>
 				{{!--<span>{{date_format created_at}}</span>--}}
 			</div>
+			</li>
+			<br />
 		</article>
-		<br />
 		{{/each}}
 	</ol>
 </section>
-{{!--{{else}}
-<section>
+{{!--{{else}}--}}
+{{!--<section>
 	<div style="display: flex; justify-contents:center; align-items:center; flex-direction: column;">
 		<h2 class="post-header" style="font-size: 1.5rem;">We couldn't find any articles that matched those terms.</h2>
 		</br>
 		<img src="../images/blackhole.jpg" alt="black hole" style="height: 450px; opacity: 0.5; padding: 50px;">
 	</div>
-</section>
-{{/if}}--}}
+</section>--}}
+{{!--{{/if}}--}}
