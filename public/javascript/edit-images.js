@@ -55,6 +55,10 @@ const updateImage = async event => {
     if (event.target.classList.contains("is-danger")) {
         deleteImage(event.target);
     }
+    // check if delete button was pressed, run delete button
+    if (event.target.classList.contains("is-warning")) {
+        editImage(event.target);
+    }
 };
 
 
@@ -72,6 +76,33 @@ const deleteImage = async target => {
 
     if (response.ok) container.remove();
     else alert(response.statusText);
+};
+
+
+// edit image_url in DOM and send PUT to backend api.
+const editImage = async target => {
+    let container = target.closest(".columns");
+    let targetId = container.getAttribute("data-id");
+    let targetInput = container.querySelector("input");
+    
+    // prompt user for new image_url
+    const image_url = prompt("Please insert a new url for this image.");
+
+    // post the new image
+    if (image_url) {
+        const response = await fetch(`/api/images/${targetId}`, {
+            method: "PUT",
+            body: JSON.stringify({
+                image_url: image_url
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+
+        if (response.ok) targetInput.value = image_url;
+        else alert(response.statusText);
+    }
 };
 
 document.querySelector("#add-img-btn").addEventListener("click", addNewImage);
