@@ -1,3 +1,4 @@
+// Deleting an Article
 async function deleteFormHandler(event) {
     event.preventDefault();
 
@@ -15,7 +16,7 @@ async function deleteFormHandler(event) {
             }
         });
 
-        if(response.ok){
+        if (response.ok) {
             document.location.replace('/');
         } else {
             alert(response.statusText);

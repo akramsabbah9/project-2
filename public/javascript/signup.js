@@ -1,3 +1,5 @@
+// Sign up a New User
+
 async function signupFormHandler(event) {
     event.preventDefault();
 

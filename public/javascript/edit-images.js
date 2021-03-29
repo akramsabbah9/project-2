@@ -1,3 +1,5 @@
+// Editing images
+
 let images = document.querySelector("#article-images");
 
 // add a new image to the article
@@ -39,8 +41,7 @@ const addNewImage = async event => {
                     </div>
                 </div>
             `);
-        }
-        else {
+        } else {
             alert(response.statusText);
         }
     }
@@ -66,7 +67,7 @@ const updateImage = async event => {
 const deleteImage = async target => {
     let container = target.closest(".columns");
     let targetId = container.getAttribute("data-id");
-    
+
     const response = await fetch(`/api/images/${targetId}`, {
         method: "DELETE",
         headers: {
@@ -84,7 +85,7 @@ const editImage = async target => {
     let container = target.closest(".columns");
     let targetId = container.getAttribute("data-id");
     let targetInput = container.querySelector("input");
-    
+
     // prompt user for new image_url
     const image_url = prompt("Please insert a new url for this image.");
 

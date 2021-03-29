@@ -1,3 +1,4 @@
+// Editing an article
 async function updateFormHandler(event) {
     event.preventDefault();
 
@@ -18,7 +19,7 @@ async function updateFormHandler(event) {
         }
     });
 
-    if(response.ok){
+    if (response.ok) {
         document.location.replace(`/article/${id}`);
     } else {
         alert(response.statusText);

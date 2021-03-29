@@ -1,4 +1,5 @@
-// update an article with a past revision's content
+// Update an article with a past Revision's content
+
 const revert = async(article_id, content) => {
     const response = await fetch(`/api/articles/${article_id}`, {
         method: "PUT",

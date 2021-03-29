@@ -1,3 +1,5 @@
+// Commenting an Article
+
 async function commentFormHandler(event) {
     event.preventDefault();
 

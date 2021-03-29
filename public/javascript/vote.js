@@ -1,3 +1,5 @@
+// TODO: Implement Votes
+
 // upvote and downvote an article.
 
 // TODO: on startup get vote info about this page to style the upvote/downvote buttons

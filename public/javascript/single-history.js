@@ -1,3 +1,5 @@
+// Allows User to view a specific Revision and Revert it if they choose
+
 // when the revert button is clicked, then update the article with that past revision
 const revisionButtonHandler = async event => {
     event.preventDefault();

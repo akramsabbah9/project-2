@@ -1,3 +1,5 @@
+// For Revisions and Reverting Articles
+
 // when the revert button in an article's history page is clicked,
 // then update the article with that past revision
 const revisionButtonHandler = async event => {
@@ -31,6 +33,7 @@ const revisionButtonHandler = async event => {
     }
 };
 
+// Allows a user to Go Back to the Article they were looking at before the Revision History
 function goBack() {
     window.history.back();
 }

@@ -1,3 +1,5 @@
+// Adding a New Article
+
 async function newFormHandler(event) {
     event.preventDefault();
 
@@ -22,7 +24,7 @@ async function newFormHandler(event) {
         }
     });
 
-    if(response.ok) {
+    if (response.ok) {
         const newArticle = await response.json();
         const newArticleId = newArticle.article_id;
 
@@ -40,10 +42,9 @@ async function newFormHandler(event) {
             });
             if (!imagefetch.ok) alert("The image you used could not be added.");
         }
-        
+
         document.location.replace(`/article/${newArticleId}`);
-    }
-    else {
+    } else {
         alert(response.statusText);
     }
 }
