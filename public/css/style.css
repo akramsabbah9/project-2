@@ -19,6 +19,13 @@ footer {
     min-height: 100%;
 }
 
+.black-hole-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .black-hole {
     height: 450px;
     opacity: 0.5;
