@@ -3,7 +3,7 @@
 		{{#if result}}
 		<div class="section has-text-centered m-2">
 			<h1 class="is-size-4">
-				{{result.length}} Search Results:
+				{{result.length}} Search  {{word_format "Result" result.length}}:
 			</h1>
 		</div>
 		{{#each result as |article|}}
