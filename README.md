@@ -21,7 +21,7 @@ Project Link:
 Visit our website and explore or contribute!
 
 
-=======
+
 ![Project Usage Image](public/images/homepage.png)
 
 ![Article View with Comments](public/images/article_comments.png)
