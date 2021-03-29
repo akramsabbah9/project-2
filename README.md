@@ -20,13 +20,12 @@ Project Link:
 
 Visit our website and explore or contribute!
 
-<<<<<<< HEAD
-![Project Usage Image](image_url)
+
 =======
 ![Project Usage Image](public/images/homepage.png)
 
 ![Article View with Comments](public/images/article_comments.png)
->>>>>>> 2a7d5044982958331f2a738244d8489f17e41f59
+
 
 ---------------------------------------
 
