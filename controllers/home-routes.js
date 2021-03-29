@@ -35,6 +35,11 @@ router.get("/", (req, res) => {
             res.status(500).json(err);
         });
 });
+
+router.get("/search/", (req, res) => {
+    return res.redirect("/search/[][][][][][][][][]Empty[]Search");
+});
+
 router.get("/search/:searchTerm", (req, res) => {
     let searchTerm = req.params.searchTerm;
     searchTerm = `*${searchTerm}*`;
@@ -67,7 +72,9 @@ router.get("/search/:searchTerm", (req, res) => {
             const result = searchArticles(idx, searchTerm, articles)
             console.log(result);
 
-            res.render("search-result", { result });
+            res.render("search-result", {
+                result
+            });
         })
         .catch(err => {
             console.log(err);
