@@ -51,7 +51,35 @@ section.columns {
     margin-top: 50px;
 }
 
+@media screen and (max-width: 770px) {
+    .media-style {
+        width: 200px;
+        margin-left: 0;
+    }
+    .search-bar {
+        width: 200px;
+    }
+    .custom-size {
+        display: flex;
+        justify-content: center;
+        margin-right: 50px;
+        padding-left: 20px;
+    }
+}
 
+@media screen and (max-width: 1024px) {
+    .media-style {
+        width: 800px;
+        margin-left: 45px;
+    }
+    .search-bar {
+        width: 800px;
+    }
+    .span-media {
+        display: flex;
+        justify-content: center;
+    }
+}
 
 
 /* Bulma Utilities */
@@ -2239,12 +2267,10 @@ fieldset[disabled] .button {
     .container {
         max-width: 100%;
     }
-
     nav {
         flex-wrap: wrap !important;
         justify-content: space-between;
     }
-
     /* #search-form {
         align-self: flex-end;
     } */
@@ -2278,7 +2304,6 @@ fieldset[disabled] .button {
     .container:not(.is-max-desktop):not(.is-max-widescreen) {
         max-width: 1344px;
     }
-
     nav {
         margin-left: 3rem;
         margin-right: 3rem;
