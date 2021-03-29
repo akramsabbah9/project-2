@@ -13,44 +13,51 @@
     <div class="bg-body"></div>
     <div class='container'>
         <div class='hero'>
-            <nav class="level">
-            <p class="level-item has-text-centered">
-                <a class="link is-info" href='/'>Home</a>
-            </p>
-            {{#if loggedIn}}
-            <p class='level-item has-text-centered'>
-                <a class='link is-info' href='/article/create'>New Article</a>
-            </p>
-            {{else}}
-            <p class="level-item has-text-centered">
-                <a class="link is-info" href='/#search'>Search</a>
-            </p>
-            {{/if}}
-            <p class="level-item has-text-centered">
-                <img src="/images/WikiPleiades_invert.png" alt="" style="height: 50px;">
-            </p>
-            {{#if loggedIn}}
-            <p class="level-item has-text-centered">
-                <a id='logout' class="link is-info" href='/logout'>Logout</a>
-            </p>
-            {{else}}
-            <p class="level-item has-text-centered">
-                <a class="link is-info" href='/login '>Login</a>
-            </p>
-            {{/if}}
-            <p class='level-item has-text-centered'>
-                <a class='link is-info' href="/random">Random</a>
-            </p>
+            <nav class="level m-6">
+                <p class="level-item has-text-centered">
+                    <a class="link is-info" href='/'>Home</a>
+                </p>
+                {{#if loggedIn}}
+                <p class='level-item has-text-centered'>
+                    <a class='link is-info' href='/article/create'>New Article</a>
+                </p>
+                {{else}}
+                <p class="level-item has-text-centered">
+                    <a class="link is-info" href='/signup'>Sign Up!</a>
+                </p>
+                {{/if}}
+                <div class="level-item has-text-centered">
+                    <img src="/images/WikiPleiades_invert.png" alt="wikipeiades logo" style="height: 50px;">
+                </div>
+                {{#if loggedIn}}
+                <p class="level-item has-text-centered">
+                    <a id='logout' class="link is-info" href='/logout'>Logout</a>
+                </p>
+                {{else}}
+                <p class="level-item has-text-centered">
+                    <a class="link is-info" href='/login '>Login</a>
+                </p>
+                {{/if}}
+                <p class='level-item has-text-centered'>
+                    <a class='link is-info' href="/random">Random</a>
+                </p>
             </nav>
+            <article class="section is-small">
+                <form id="search-form">
+                    <div class="field has-addons" id='search-bar'>
+                        <div class="control">
+                            <input class="input" name="search-bar" type="text" placeholder="To the stars...">
+                        </div>
+                        <div class="control" id='search'>
+                            <button class="button is-link" type="submit">
+                                Search
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </article>
         </div>
         <main>
-            <section class='columns'>
-                <div class='column is-full'>
-                    <h1 class='title'>WikiPleiades</h1>
-
-                    <h2 class='subtitle'>Gateway to the Stars</h2>
-                </div>
-            </section>
             {{{body}}}
         </main>
     </div>
@@ -58,5 +65,7 @@
     {{#if loggedIn}}
     <script src="/javascript/logout.js"></script>
     {{/if}}
+    <script src="/javascript/search.js"></script>
 </body>
+
 </html>
