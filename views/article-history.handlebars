@@ -1,11 +1,11 @@
 <div>
-    <h2 class="title">Revision History of this article:</h2>
+    <h2 class="title">Revision History of Article:</h2>
     <ul id="revision-history">
         {{#each history}}
         <li class="card">
             <div class="card-header card-header-title is-flex is-justify-content-space-between p-2 m-2">
                 <p>
-                    Revision added by {{user.username}} on 
+                    Revision added by {{user.username}} on
                     {{date_format created_at}}
                 </p>
                 <div>
@@ -16,6 +16,10 @@
         </li>
         {{/each}}
     </ul>
+    <div class="is-flex is-justify-content-flex-end">
+        <button class="button is-link m-2" id="go-back">Go Back</button>
+    </div>
 </div>
+
 <script src="/javascript/revert.js"></script>
 <script src="/javascript/history.js"></script>

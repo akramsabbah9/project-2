@@ -31,4 +31,9 @@ const revisionButtonHandler = async event => {
     }
 };
 
+function goBack() {
+    window.history.back();
+}
+
+document.querySelector("#go-back").addEventListener("click", goBack);
 document.querySelector("#revision-history").addEventListener("click", revisionButtonHandler);
