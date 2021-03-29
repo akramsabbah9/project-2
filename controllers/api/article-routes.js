@@ -109,7 +109,6 @@ router.get("/:id", (req, res) => {
 
 
 // post a new article
-// TODO: maybe add the newly-created article to the revision table when it is made?
 router.post("/", withAuth, (req, res) => {
     // expects { title, content } in req.body
     Article.create({
@@ -160,7 +159,6 @@ router.put("/vote", withAuth, checkVote, (req, res) => {
 
 
 // (put) update an article by id
-// TODO: maybe interface with the revision table, as done in votes?
 router.put("/:id", withAuth, (req, res) => {
     // expects { title, content } in req.body
     Article.update({

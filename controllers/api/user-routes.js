@@ -172,6 +172,7 @@ router.put('/:id', withAuth, (req, res) => {
             res.status(500).json(err);
         });
 });
+
 // user log out route
 router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {

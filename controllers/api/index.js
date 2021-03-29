@@ -1,3 +1,5 @@
+// index for all api routes
+
 const router = require("express").Router();
 
 const articleRoutes = require("./article-routes");

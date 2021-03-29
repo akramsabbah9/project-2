@@ -26,16 +26,15 @@ User.init({
         allowNull: false,
         unique: true,
         validate: {
-            len: [4, 12]
+            len: [4, 18] // username must be between 4 and 12 characters long
 
         }
     },
-    // We can adjust this as you guys think is best but I thought it would be good to give the values some parameters
     password: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-            len: [8]
+            len: [8] // password must be 8 characters long
         }
     },
     email: {

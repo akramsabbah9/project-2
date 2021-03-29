@@ -9,7 +9,9 @@
 			<div class="mb-2">
 				<a href="/article/{{article.id}}/history">{{article.revisions.length}}
 					{{word_format "Revision" article.revisions.length}}</a>
+				{{#if loggedIn}}
 				| <a href="/article/{{article.id}}/edit">Edit</a>
+				{{/if}}
 			</div>
 			<p class="article-content">
 				{{#if article.images}}

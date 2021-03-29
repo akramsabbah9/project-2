@@ -1,3 +1,4 @@
+// using lunr text-search index to search our data
 const lunr = require("lunr");
 const router = require("express").Router();
 const {
@@ -36,10 +37,13 @@ router.get("/", (req, res) => {
         });
 });
 
+// in case a user presses the Search Button without input
+// this route redirects the page to a result that informs the user no articles were found
 router.get("/search/", (req, res) => {
-    return res.redirect("/search/[][][][][][][][][]Empty[]Search");
+    return res.redirect("/search/[][][]Empty[]Search[][][]");
 });
 
+// route for searching the database using lunr
 router.get("/search/:searchTerm", (req, res) => {
     let searchTerm = req.params.searchTerm;
     searchTerm = `*${searchTerm}*`;

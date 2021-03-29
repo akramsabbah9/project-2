@@ -1,3 +1,4 @@
+// index for the relationships between tables
 const Article = require("./Article");
 const Comment = require("./Comment");
 const User = require("./User");

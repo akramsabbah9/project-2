@@ -3,6 +3,7 @@ const { Revision, Article, User } = require('../../models');
 const withAuth = require("../../utils/auth.js");
 
 
+// get all revisions
 router.get('/', (req, res) => {
     Revision.findAll()
         .then(revisionData => res.json(revisionData))
@@ -11,6 +12,8 @@ router.get('/', (req, res) => {
             res.status(500).json(err);
         });
 });
+
+// get a revision by ID
 router.get('/:id', (req, res) => {
     Revision.findOne({
             where: {
@@ -32,6 +35,8 @@ router.get('/:id', (req, res) => {
             res.status(500).json(err);
         });
 });
+
+// create a new revision
 router.post('/', withAuth, (req, res) => {
     // input: {"changes": "A bunch of edits","user_id": 1, "article_id": 2}
     Revision.create({
@@ -46,6 +51,7 @@ router.post('/', withAuth, (req, res) => {
         });
 });
 
+// delete a revision, not available to users
 router.delete('/:id', withAuth, (req, res) => {
     Revision.destroy({
             where: {
