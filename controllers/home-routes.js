@@ -37,7 +37,7 @@ router.get("/", (req, res) => {
 });
 
 router.get("/search/", (req, res) => {
-    return res.redirect("/");
+    return res.redirect("/search/[][][][][][][][][]Empty[]Search");
 });
 
 router.get("/search/:searchTerm", (req, res) => {
