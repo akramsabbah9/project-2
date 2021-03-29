@@ -13,7 +13,7 @@
     <div class="bg-body"></div>
     <div class='container'>
         <div class='hero'>
-            <nav class="level m-6 has-text-weight-semibold">
+            <nav class="level m-6 has-text-weight-semibold is-size-4">
                 <p class="level-item">
                     <a class="link is-info" href='/'>Home</a>
                 </p>
@@ -42,7 +42,7 @@
                     <a class='link is-info' href="/random">Random</a>
                 </p>
             </nav>
-            <article class="section is-small">
+            <div class="is-centered">
                 <form id="search-form">
                     <div class="field has-addons" id='search-bar'>
                         <div class="control">
@@ -55,9 +55,15 @@
                         </div>
                     </div>
                 </form>
-            </article>
+            </div>
         </div>
         <main>
+            <div class="section is-small is-flex is-justify-content-center m-6">
+                <figure class="image">
+                    <img src="/images/spaceman.jpg" style="opacity: 0.4; height: 600px; width:620px;"
+                        class="is-rounded">
+                </figure>
+            </div>
             {{{body}}}
         </main>
     </div>
