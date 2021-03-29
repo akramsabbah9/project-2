@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WikiPleiades</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.2/css/bulma.min.css'>
+    <link rel='stylesheet' href='/css/style.css'>
+</head>
+
+<body>
+    <div class="bg-body"></div>
+    <div class='container is is-mobile'>
+        <div class='hero'>
+            <nav class="level mt-6 mb-6 has-text-weight-semibold is-size-4">
+                <div class="level-item has-text-centered">
+                    <img src="/images/WikiPleiades_invert.png" alt="wikipeiades logo" style="height: 50px;">
+                </div>
+                <p class="level-item">
+                    <a class="link is-info" href='/'>Home</a>
+                </p>
+                {{#if loggedIn}}
+                <p class='level-item has-text-centered'>
+                    <a class='link is-info' href='/article/create'>New Article</a>
+                </p>
+                {{else}}
+                <p class="level-item has-text-centered">
+                    <a class="link is-info" href='/signup'>Sign Up</a>
+                </p>
+                {{/if}}
+
+                {{#if loggedIn}}
+                <p class="level-item has-text-centered">
+                    <a id='logout' class="link is-info" href='/logout'>Logout</a>
+                </p>
+                {{else}}
+                <p class="level-item has-text-centered">
+                    <a class="link is-info" href='/login '>Login</a>
+                </p>
+                {{/if}}
+                <p class='level-item has-text-centered'>
+                    <a class='link is-info' href="/random">Random</a>
+                </p>
+                <form id="search-form">
+                    <div class="field has-addons" id='search-bar'>
+                        <div class="control">
+                            <input class="input" name="search-bar" type="text" placeholder="To the stars...">
+                        </div>
+                        <div class="control" id='search'>
+                            <button class="button is-link" type="submit">
+                                <i class="fas fa-rocket"></i> &emsp;Search
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </nav>
+            <main>
+
+                {{{body}}}
+            </main>
+        </div>
+        <footer></footer>
+        {{#if loggedIn}}
+        <script src="/javascript/logout.js"></script>
+        {{/if}}
+        <script src="/javascript/search.js"></script>
+</body>
+
+</html>

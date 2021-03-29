@@ -1,0 +1,35 @@
+<div>
+	<ul>
+		{{#if result}}
+		<div class="section has-text-centered m-2">
+			<h1 class="is-size-4">
+				{{result.length}} Search  {{word_format "Result" result.length}}:
+			</h1>
+		</div>
+		{{#each result as |article|}}
+		<li>
+			<div class="m-2">
+				<article class="card comment-card">
+					<div
+						class="card-header card-header-title is-flex is-justify-content-space-between has-background-grey-lighter">
+						<p><a href="/article/{{article.id}}">{{article.title}}</p></a>
+						<span>{{date_format created_at}}</span>
+					</div>
+				</article>
+			</div>
+		</li>
+		{{/each}}
+	</ul>
+</div>
+{{else}}
+<section>
+	<div class="black-hole-div">
+		<h2 class="post-header is-size-3">
+			No Articles Found!
+		</h2>
+		</br>
+		<img src="../images/blackhole.jpg" alt="black hole" class="black-hole">
+	</div>
+</section>
+{{/if}}
+<script src="/javascript/search.js"></script>

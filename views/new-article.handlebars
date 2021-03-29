@@ -1,0 +1,41 @@
+<form class="box new-article-form">
+    <div class='card'>
+        <div class='card-content'>
+            <p class='title'>New Article</p>
+            <p class='subtitle'>Your own Pillars of Creation</p>
+
+            <div class='field'>
+                <label for='article-title' class='label'>Article Title</label>
+                <div class='control'>
+                    <input class='input' type='text' id='article-title' name='article-title' placeholder='To Infinity, and Beyond'>
+                </div>
+            </div>
+
+            <div class='field'>
+                <label for='article-content' class='label'>Article Info</label>
+                <div class='control'>
+                    <textarea class='textarea' rows="15" id='article-content' name='article-content' placeholder='Include as much information as you can. Be sure to include basics like which type of celestial body, mass, and if applicable which constellations in which it can be found. Citations are also appreciated.'></textarea>
+                </div>
+            </div>
+            {{!-- <div class='field'>
+                <label for='sources' class='label'>Sources</label>
+                <div class='control'>
+                    <textarea id='sources' class='textarea is-small' placeholder='Please include any cited sources'></textarea>
+                </div>
+            </div> --}}
+            <div class='field'>
+                <label class='label' for="img-url">Image</label>
+                <div class='control'>
+                    <input class='input' type='text' id="img-url" name="img-url" placeholder='Please include the URL of an image which represents the subject of your article.'>
+                </div>
+            </div>
+            <div class="is-flex is-justify-content-flex-end">
+                <div class="is-grouped">
+                    <button class="button is-success" type='submit'>Submit</button>
+                    <a href="/" class="button is-light">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script src="/javascript/add-article.js"></script>
