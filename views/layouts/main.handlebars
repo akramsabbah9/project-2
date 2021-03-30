@@ -14,8 +14,8 @@
     <div class="bg-body"></div>
     <div class='container is is-mobile'>
         <div class='hero'>
-            <nav class="level mt-6 mb-6 has-text-weight-semibold is-size-4">
-                <div class="level-item has-text-centered">
+            <nav class="level mt-6 mb-6 has-text-weight-semibold is-size-4 media-query-style">
+                <div class="level-item has-text-centered ">
                     <img src="/images/WikiPleiades_invert.png" alt="wikipeiades logo" style="height: 50px;">
                 </div>
                 <p class="level-item">
@@ -43,18 +43,25 @@
                 <p class='level-item has-text-centered'>
                     <a class='link is-info' href="/random">Random</a>
                 </p>
-                <form id="search-form">
-                    <div class="field has-addons" id='search-bar'>
-                        <div class="control">
-                            <input class="input" name="search-bar" type="text" placeholder="To the stars...">
+
+                <div class="custom-size">
+                    <form id="search-form" class="media-style">
+                        <div class="field" id='search-bar'>
+                            <span class="span-media">
+                                <div class="control">
+                                    <input class="input" name="search-bar" type="text" class="search-bar"
+                                        placeholder="To the stars...">
+                                </div>
+                                <div class="control" id='search'>
+                                    <button class="button is-link" type="submit">
+                                        <i class="fas fa-rocket"></i> &emsp;Search
+                                    </button>
+                                </div>
+                            </span>
+
                         </div>
-                        <div class="control" id='search'>
-                            <button class="button is-link" type="submit">
-                                <i class="fas fa-rocket"></i> &emsp;Search
-                            </button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </nav>
             <main>
 
